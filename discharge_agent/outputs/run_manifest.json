@@ -1,0 +1,30 @@
+[
+  {
+    "patient_id": "patient_1",
+    "status": "success",
+    "flags": 1,
+    "conflicts": 0,
+    "pending_results": 0,
+    "fabrication_scan_passed": false,
+    "outputs": {
+      "summary_json": "outputs\\summaries\\patient_1_summary.json",
+      "summary_md": "outputs\\summaries\\patient_1_summary.md",
+      "trace_json": "outputs\\traces\\patient_1_trace.json",
+      "trace_txt": "outputs\\traces\\patient_1_trace.txt"
+    }
+  },
+  {
+    "patient_id": "patient_2",
+    "status": "success",
+    "flags": 1,
+    "conflicts": 0,
+    "pending_results": 0,
+    "fabrication_scan_passed": false,
+    "outputs": {
+      "summary_json": "outputs\\summaries\\patient_2_summary.json",
+      "summary_md": "outputs\\summaries\\patient_2_summary.md",
+      "trace_json": "outputs\\traces\\patient_2_trace.json",
+      "trace_txt": "outputs\\traces\\patient_2_trace.txt"
+    }
+  }
+]

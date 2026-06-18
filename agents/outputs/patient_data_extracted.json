@@ -1,0 +1,1301 @@
+{
+  "patient_id": "Patient Data",
+  "patient_dir": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+  "raw_documents": [
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 1,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 2,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 3,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 4,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 5,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 6,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 7,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 8,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 9,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 10,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 11,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 12,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 13,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 14,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 15,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 16,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 17,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 18,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 19,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 20,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 21,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 22,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 23,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 24,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 25,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 26,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 27,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 28,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 29,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 30,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 31,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 32,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 33,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 34,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 35,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 36,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 37,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 38,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 39,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 40,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 41,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 42,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 43,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 44,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 45,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 46,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 47,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 48,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 49,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 50,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 51,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 52,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 53,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 54,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 55,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 56,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 57,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 58,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 59,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 60,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 61,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 62,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 63,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 64,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 65,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 66,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 67,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 68,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 69,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 70,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 71,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    }
+  ],
+  "parsed_documents": [
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 1,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 2,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 3,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 4,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 5,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 6,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 7,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 8,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 9,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 10,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 11,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 12,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 13,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 14,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 15,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 16,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 17,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 18,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 19,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 20,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 21,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 22,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 23,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 24,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 25,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 26,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 27,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 28,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 29,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 30,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 31,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 32,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 33,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 34,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 35,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 36,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 37,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 38,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 39,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 40,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 41,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 42,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 43,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 44,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 45,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 46,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 47,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 48,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 49,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 50,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 51,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 52,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 53,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 54,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 55,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 56,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 57,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 58,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 59,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 60,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 61,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 62,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 63,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 64,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 65,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 66,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 67,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 68,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 69,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 70,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 71,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    }
+  ],
+  "unreadable_files": [],
+  "demographics": {},
+  "admission_date": null,
+  "discharge_date": null,
+  "diagnoses": [],
+  "discharge_diagnoses": [],
+  "procedures": [],
+  "admission_medications": [],
+  "discharge_medications": [],
+  "allergies": null,
+  "lab_results": [],
+  "pending_results": [],
+  "discharge_condition": null,
+  "follow_up": null,
+  "hospital_course": null
+}

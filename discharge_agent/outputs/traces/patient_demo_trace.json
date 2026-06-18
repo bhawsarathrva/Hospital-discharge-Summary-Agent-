@@ -1,0 +1,390 @@
+{
+  "patient_id": "patient_demo",
+  "start_time": 1780547556.0305464,
+  "end_time": 1780547562.1413047,
+  "duration_s": 6.11,
+  "total_steps": 10,
+  "termination_reason": "plan_complete",
+  "total_tokens": 0,
+  "total_flags": 68,
+  "steps": [
+    {
+      "step": 1,
+      "timestamp": 1780547556.0376434,
+      "reasoning": "Plan step 1: 'Ingest all PDFs from patient directory'. Completed steps: []. Proceeding with tool 'pdf_reader'.",
+      "tool_name": "pdf_reader",
+      "tool_inputs": {
+        "step_id": 1
+      },
+      "tool_result": {
+        "status": "success",
+        "data": [
+          "PatientDocument(file_path='data/patient_demo/patient_notes.pdf', page_number=1, note_type='admission_note', raw_text='CASE RECORD / ADMISSION RECORD (1)\\nDate of Admission: 26/02/2026\\nChief Complaints: Fever, Generalized weakness Since 3 days, Myalgia.\\nHistory of Present Illness: Patient on his regular medication.\\nGradually c/o Fever, Myalgia, Generalized weakness for further Rx came to our hospital.\\nPast History / Drug History: K/c/o T2DM (on Ayurvedic Medication)\\nHbA1c - 13.9% (outside report)\\nAllergic History: Not Known\\nCASE RECORD / ADMISSION RECORD (2)\\nExamination: O/E Conscious, oriented\\nPR: 116 b/m  BP: 87/50 mmHg  RR: 26 b/m  SPO2: 99%\\nGRBS: 443 mg/dL  Temp: 98.3\u00b0F\\nDiagnosis (Provisional): T2DM AKI Uncontrolled T2DM\\nFinal Diagnosis:\\n- ? Synovitis\\n- Cholelithiasis without Cholecystitis', extraction_confidence=1.0, read_error=None)",
+          "PatientDocument(file_path='data/patient_demo/patient_notes.pdf', page_number=2, note_type='lab_result', raw_text='HAEMATOLOGY REPORT\\nCOMPLETE BLOOD COUNT (CBC)\\nHAEMOGLOBIN (HB): 11.4 gm/dl   Reference: 13.5-17.5\\nTOTAL COUNT: 7160 Cells/cumm    Reference: 4000-11000\\nNEUTROPHILS: 79.1 %             Reference: 35-66\\nLYMPHOCYTES: 12.1 %\\nPLATELET COUNT: 1.80 Lakhs/cumm\\nPACKED CELL VOLUME (PCV): 35.9 %\\nBIOCHEMISTRY REPORT\\nSERUM CREATININE: 0.85 mg/dL    Reference: 0.7-1.4\\nRANDOM BLOOD SUGAR (RBS): 496.00 mg/dL  Reference: 80-140\\nSERUM ELECTROLYTES\\nS.SODIUM: 127.00 mmol/L         Reference: 135-150\\nS.POTASSIUM (K+): 3.84 mmol/L   Reference: 3.5-5\\nABG WITH LACTATE\\npH: 7.39\\npCO2: 32.00 mmHg\\nHCO3: 19.20 mmol/L              Reference: 20-28\\nUrine culture and sensitivity sent - report awaited.', extraction_confidence=1.0, read_error=None)",
+          "PatientDocument(file_path='data/patient_demo/patient_notes.pdf', page_number=3, note_type='discharge_summary', raw_text='DISCHARGE SUMMARY\\nDIAGNOSIS:\\n1) ACUTE GASTROENTERITIS WITH DEHYDRATION\\n2) URINARY TRACT INFECTION\\nHISTORY: C/O Multiple episodes of loose stools, 2-3 episodes of vomiting,\\nfatigue since 3 days and fever since yesterday.\\nInitially she was treated at local clinic.\\nPAST HISTORY: K/C/O Thyroid disorder on treatment.\\nPHYSICAL EXAMINATION:\\nPR-89/min, BP-130/80 mmHg, RR-20/min, SPO2-98% at room air.\\nCNS-Conscious Oriented\\nCVS-S1S2(+)\\nRS-B/L NVBS(+)\\nPA-Soft, non tender\\nCOURSE IN THE HOSPITAL:\\nPatient presented to us with above mentioned complaints. After evaluation, she\\nwas admitted to ward. Initial investigations showed normal CBC. Serum\\ncreatinine (1.65mg/dl) elevated. Serum electrolytes showed low\\nserum sodium (128.00mmol/L). Urine routine showed ketone bodies(+), 10-\\n12/hpf of pus cells, 15-20/hpf of epithelial cells with presence of bacteria hence\\nurine culture and sensitivity sent - report awaited.\\nShe was treated with IV fluids, IV antibiotics, IV PPIs, IV antiemetics.\\nUSG abdomen showed Grade-I fatty liver changes.\\nRepeat Serum Creatinine (1.17mg/dl) done was normal.\\nPatient was advised to stay back but attendants not willing, hence being discharged at request.\\nCONDITION AT DISCHARGE: Hemodynamically stable\\nADVICE ON DISCHARGE:\\n1. TAB. RACIPER 40MG - 1-0-0 - 7 DAYS (BEFORE FOOD)\\n2. TAB. EMESET 4MG - 1-1-1 - 3 DAYS\\n3. TAB. OFLOX TZ - 1-0-1 - 5 DAYS\\n4. TAB M STRONG - 1-0-0 - 15 DAYS\\n5. TAB. ZEDOTT - 1-1-1 - 3 DAYS\\n6. TAB. LOPIRAMIDE 2MG - 1-0-1 - 5 DAYS\\nFOLLOW-UP INSTRUCTIONS:\\nUrine culture and sensitivity sent - report awaited.\\nReview immediately in case of fever, loose stools, vomiting, fatigue.\\nReview on 09.03.2026. CBC\\nDate of Discharge: 09/03/2026', extraction_confidence=1.0, read_error=None)",
+          "PatientDocument(file_path='data/patient_demo/patient_notes.pdf', page_number=4, note_type='medication_record', raw_text='DRUG CHART (1)\\nDiagnosis: T2DM AFI\\nAllergies: Not Known\\nDrug: INJ MEROPENEM\\nDose: 1gm  Route: IV  Freq: 1-1-1  Date: 28/2/26\\nDrug: INJ PAN (Pantoprazole)\\nDose: 40mg  Route: IV  Freq: OD  Date: 28/2/26\\nDrug: INJ EMESET\\nDose: 4mg  Route: IV  Freq: 1-1-1  Date: 28/2/26\\nDrug: INJ LANTUS (Insulin Glargine)\\nDose: 10U  Route: S/C  Freq: OD  Date: 28/2/26\\nTAB DOLO (Paracetamol)\\nDose: 650mg  Route: P/O  Freq: 1-1-1  Date: 28/2/26', extraction_confidence=1.0, read_error=None)"
+        ],
+        "error": null,
+        "metadata": {
+          "total_pages": 4,
+          "unreadable_files": [],
+          "pdf_count": 1
+        },
+        "duration_s": 0.072
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 0.072,
+      "tokens_used": 0
+    },
+    {
+      "step": 2,
+      "timestamp": 1780547556.112303,
+      "reasoning": "Plan step 2: 'Classify and extract entities from all documents'. Completed steps: [1]. Proceeding with tool 'document_parser'.",
+      "tool_name": "document_parser",
+      "tool_inputs": {
+        "step_id": 2
+      },
+      "tool_result": {
+        "status": "success",
+        "data": [
+          {
+            "file_path": "data/patient_demo/patient_notes.pdf",
+            "page_number": 1,
+            "note_type": "admission_note",
+            "extraction_confidence": 1.0,
+            "read_error": null,
+            "raw_text": "CASE RECORD / ADMISSION RECORD (1)\nDate of Admission: 26/02/2026\nChief Complaints: Fever, Generalized weakness Since 3 days, Myalgia.\nHistory of Present Illness: Patient on his regular medication.\nGradually c/o Fever, Myalgia, Generalized weakness for further Rx came to our hospital.\nPast History / Drug History: K/c/o T2DM (on Ayurvedic Medication)\nHbA1c - 13.9% (outside report)\nAllergic History: Not Known\nCASE RECORD / ADMISSION RECORD (2)\nExamination: O/E Conscious, oriented\nPR: 116 b/m  BP: 87/50 mmHg  RR: 26 b/m  SPO2: 99%\nGRBS: 443 mg/dL  Temp: 98.3\u00b0F\nDiagnosis (Provisional): T2DM AKI Uncontrolled T2DM\nFinal Diagnosis:\n- ? Synovitis\n- Cholelithiasis without Cholecystitis",
+            "entities": {}
+          },
+          {
+            "file_path": "data/patient_demo/patient_notes.pdf",
+            "page_number": 2,
+            "note_type": "lab_result",
+            "extraction_confidence": 1.0,
+            "read_error": null,
+            "raw_text": "HAEMATOLOGY REPORT\nCOMPLETE BLOOD COUNT (CBC)\nHAEMOGLOBIN (HB): 11.4 gm/dl   Reference: 13.5-17.5\nTOTAL COUNT: 7160 Cells/cumm    Reference: 4000-11000\nNEUTROPHILS: 79.1 %             Reference: 35-66\nLYMPHOCYTES: 12.1 %\nPLATELET COUNT: 1.80 Lakhs/cumm\nPACKED CELL VOLUME (PCV): 35.9 %\nBIOCHEMISTRY REPORT\nSERUM CREATININE: 0.85 mg/dL    Reference: 0.7-1.4\nRANDOM BLOOD SUGAR (RBS): 496.00 mg/dL  Reference: 80-140\nSERUM ELECTROLYTES\nS.SODIUM: 127.00 mmol/L         Reference: 135-150\nS.POTASSIUM (K+): 3.84 mmol/L   Reference: 3.5-5\nABG WITH LACTATE\npH: 7.39\npCO2: 32.00 mmHg\nHCO3: 19.20 mmol/L              Reference: 20-28\nUrine culture and sensitivity sent - report awaited.",
+            "entities": {}
+          },
+          {
+            "file_path": "data/patient_demo/patient_notes.pdf",
+            "page_number": 3,
+            "note_type": "discharge_summary",
+            "extraction_confidence": 1.0,
+            "read_error": null,
+            "raw_text": "DISCHARGE SUMMARY\nDIAGNOSIS:\n1) ACUTE GASTROENTERITIS WITH DEHYDRATION\n2) URINARY TRACT INFECTION\nHISTORY: C/O Multiple episodes of loose stools, 2-3 episodes of vomiting,\nfatigue since 3 days and fever since yesterday.\nInitially she was treated at local clinic.\nPAST HISTORY: K/C/O Thyroid disorder on treatment.\nPHYSICAL EXAMINATION:\nPR-89/min, BP-130/80 mmHg, RR-20/min, SPO2-98% at room air.\nCNS-Conscious Oriented\nCVS-S1S2(+)\nRS-B/L NVBS(+)\nPA-Soft, non tender\nCOURSE IN THE HOSPITAL:\nPatient presented to us with above mentioned complaints. After evaluation, she\nwas admitted to ward. Initial investigations showed normal CBC. Serum\ncreatinine (1.65mg/dl) elevated. Serum electrolytes showed low\nserum sodium (128.00mmol/L). Urine routine showed ketone bodies(+), 10-\n12/hpf of pus cells, 15-20/hpf of epithelial cells with presence of bacteria hence\nurine culture and sensitivity sent - report awaited.\nShe was treated with IV fluids, IV antibiotics, IV PPIs, IV antiemetics.\nUSG abdomen showed Grade-I fatty liver changes.\nRepeat Serum Creatinine (1.17mg/dl) done was normal.\nPatient was advised to stay back but attendants not willing, hence being discharged at request.\nCONDITION AT DISCHARGE: Hemodynamically stable\nADVICE ON DISCHARGE:\n1. TAB. RACIPER 40MG - 1-0-0 - 7 DAYS (BEFORE FOOD)\n2. TAB. EMESET 4MG - 1-1-1 - 3 DAYS\n3. TAB. OFLOX TZ - 1-0-1 - 5 DAYS\n4. TAB M STRONG - 1-0-0 - 15 DAYS\n5. TAB. ZEDOTT - 1-1-1 - 3 DAYS\n6. TAB. LOPIRAMIDE 2MG - 1-0-1 - 5 DAYS\nFOLLOW-UP INSTRUCTIONS:\nUrine culture and sensitivity sent - report awaited.\nReview immediately in case of fever, loose stools, vomiting, fatigue.\nReview on 09.03.2026. CBC\nDate of Discharge: 09/03/2026",
+            "entities": {}
+          },
+          {
+            "file_path": "data/patient_demo/patient_notes.pdf",
+            "page_number": 4,
+            "note_type": "medication_record",
+            "extraction_confidence": 1.0,
+            "read_error": null,
+            "raw_text": "DRUG CHART (1)\nDiagnosis: T2DM AFI\nAllergies: Not Known\nDrug: INJ MEROPENEM\nDose: 1gm  Route: IV  Freq: 1-1-1  Date: 28/2/26\nDrug: INJ PAN (Pantoprazole)\nDose: 40mg  Route: IV  Freq: OD  Date: 28/2/26\nDrug: INJ EMESET\nDose: 4mg  Route: IV  Freq: 1-1-1  Date: 28/2/26\nDrug: INJ LANTUS (Insulin Glargine)\nDose: 10U  Route: S/C  Freq: OD  Date: 28/2/26\nTAB DOLO (Paracetamol)\nDose: 650mg  Route: P/O  Freq: 1-1-1  Date: 28/2/26",
+            "entities": {}
+          }
+        ],
+        "error": null,
+        "metadata": {
+          "classified": 4,
+          "failed": 0
+        },
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 3,
+      "timestamp": 1780547556.1144392,
+      "reasoning": "Plan step 3: 'Extract laboratory results and flag pending tests'. Completed steps: [1, 2]. Proceeding with tool 'lab_extractor'.",
+      "tool_name": "lab_extractor",
+      "tool_inputs": {
+        "step_id": 3
+      },
+      "tool_result": {
+        "status": "success",
+        "data": {
+          "labs": [
+            "LabResult(test_name='Blood Glucose Rbs', value='443', unit='mg/dl', reference_range='70.0\u2013140.0 mg/dL', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=True, source_note='data/patient_demo/patient_notes.pdf:p1')",
+            "LabResult(test_name='Hba1C', value='13.9', unit=None, reference_range=None, status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=None, source_note='data/patient_demo/patient_notes.pdf:p1')",
+            "LabResult(test_name='Haemoglobin', value='11.4', unit='gm', reference_range='12.0\u201317.5 g/dL', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=True, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Wbc', value='7160', unit='cells/cumm', reference_range=None, status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=None, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Platelets', value='1.80', unit='lakhs/cumm', reference_range=None, status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=None, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Serum Creatinine', value='0.85', unit='mg/dl', reference_range='0.7\u20131.4 mg/dL', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=False, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Sodium', value='127.00', unit='mmol/l', reference_range='135.0\u2013150.0 mmol/L', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=True, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Ph', value='7.39', unit='', reference_range='7.35\u20137.45', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=False, source_note='data/patient_demo/patient_notes.pdf:p2')",
+            "LabResult(test_name='Hco3', value='19.20', unit='mmol/l', reference_range='22.0\u201328.0 mmol/L', status=<LabStatus.FINAL: 'final'>, date=None, is_abnormal=True, source_note='data/patient_demo/patient_notes.pdf:p2')"
+          ],
+          "pending": [
+            "Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ')",
+            "Urine culture and sensitivity \u2014 report awaited",
+            "Urine culture and sensitivity \u2014 awaited",
+            "Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a')"
+          ]
+        },
+        "error": null,
+        "metadata": {
+          "total_labs": 9,
+          "pending_count": 4
+        },
+        "duration_s": 0.003
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 0.003,
+      "tokens_used": 0
+    },
+    {
+      "step": 4,
+      "timestamp": 1780547556.11918,
+      "reasoning": "Plan step 4: 'Detect conflicts between source notes'. Completed steps: [1, 2, 3]. Proceeding with tool 'conflict_detector'.",
+      "tool_name": "conflict_detector",
+      "tool_inputs": {
+        "step_id": 4
+      },
+      "tool_result": {
+        "status": "success",
+        "data": [],
+        "error": null,
+        "metadata": {
+          "conflict_count": 0
+        },
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 5,
+      "timestamp": 1780547556.1210017,
+      "reasoning": "Plan step 5: 'Reconcile admission vs discharge medications'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'medication_reconciler'.",
+      "tool_name": "medication_reconciler",
+      "tool_inputs": {
+        "step_id": 5
+      },
+      "tool_result": {
+        "status": "not_found",
+        "data": null,
+        "error": "Both admission and discharge medication lists are empty",
+        "metadata": {},
+        "duration_s": 0.0
+      },
+      "tool_status": "failed",
+      "next_decision": "Step failed (Both admission and discharge medication lists are empty) \u2014 marking required fields MISSING",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 3.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 6,
+      "timestamp": 1780547559.1244226,
+      "reasoning": "Plan step 6: 'Check discharge medications for drug interactions'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'drug_interaction_lookup'.",
+      "tool_name": "drug_interaction_lookup",
+      "tool_inputs": {
+        "step_id": 6
+      },
+      "tool_result": {
+        "status": "not_found",
+        "data": null,
+        "error": "No medications found for drug interaction check",
+        "metadata": {},
+        "duration_s": 0.0
+      },
+      "tool_status": "failed",
+      "next_decision": "Step failed (No medications found for drug interaction check) \u2014 skipping",
+      "flags_raised": [],
+      "retry_count": 0,
+      "duration_s": 3.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 7,
+      "timestamp": 1780547562.127593,
+      "reasoning": "Plan step 7: 'Escalate any critical issues found so far'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'escalate'.",
+      "tool_name": "escalate",
+      "tool_inputs": {
+        "step_id": 7
+      },
+      "tool_result": {
+        "status": "success",
+        "data": {
+          "escalated_items": 17
+        },
+        "error": null,
+        "metadata": {
+          "total_flags": 17
+        },
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [
+        "\u26a0\ufe0f [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ') (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 report awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a') (Source: lab_extractor)"
+      ],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 8,
+      "timestamp": 1780547562.131797,
+      "reasoning": "Plan step 8: 'Synthesise hospital course narrative'. Completed steps: [1, 2, 3, 4, 7]. Proceeding with tool 'synthesise_hospital_course'.",
+      "tool_name": "synthesise_hospital_course",
+      "tool_inputs": {
+        "step_id": 8
+      },
+      "tool_result": {
+        "status": "success",
+        "data": {
+          "hospital_course_length": 650
+        },
+        "error": null,
+        "metadata": {},
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [
+        "\u26a0\ufe0f [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ') (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 report awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a') (Source: lab_extractor)"
+      ],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 9,
+      "timestamp": 1780547562.1354969,
+      "reasoning": "Plan step 9: 'Assemble final discharge summary draft'. Completed steps: [1, 2, 3, 4, 7, 8]. Proceeding with tool 'assemble_summary'.",
+      "tool_name": "assemble_summary",
+      "tool_inputs": {
+        "step_id": 9
+      },
+      "tool_result": {
+        "status": "success",
+        "data": {
+          "summary_assembled": true
+        },
+        "error": null,
+        "metadata": {
+          "sections": 14
+        },
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [
+        "\u26a0\ufe0f [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ') (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 report awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a') (Source: lab_extractor)"
+      ],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    },
+    {
+      "step": 10,
+      "timestamp": 1780547562.1390955,
+      "reasoning": "Plan step 10: 'Run fabrication guard scan on assembled summary'. Completed steps: [1, 2, 3, 4, 7, 8, 9]. Proceeding with tool 'fabrication_guard'.",
+      "tool_name": "fabrication_guard",
+      "tool_inputs": {
+        "step_id": 10
+      },
+      "tool_result": {
+        "status": "success",
+        "data": {
+          "passed": true,
+          "issues_found": 0,
+          "issues": []
+        },
+        "error": null,
+        "metadata": {},
+        "duration_s": 0.0
+      },
+      "tool_status": "success",
+      "next_decision": "Step succeeded \u2014 continue to next",
+      "flags_raised": [
+        "\u26a0\ufe0f [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)",
+        "\u26a0\ufe0f [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ') (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 report awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 awaited (Source: lab_extractor)",
+        "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a') (Source: lab_extractor)"
+      ],
+      "retry_count": 0,
+      "duration_s": 0.0,
+      "tokens_used": 0
+    }
+  ]
+}

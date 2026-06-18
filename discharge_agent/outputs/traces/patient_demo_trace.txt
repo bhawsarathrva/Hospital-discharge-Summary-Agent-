@@ -1,0 +1,149 @@
+=== AGENT TRACE: patient_demo ===
+Duration: 6.11s | Steps: 10 | Tokens: 0 | Flags: 68
+Terminated: plan_complete
+
+── Step 1 ──────────────────────────────
+  REASON : Plan step 1: 'Ingest all PDFs from patient directory'. Completed steps: []. Proceeding with tool 'pdf_reader'....
+  ACTION : pdf_reader({"step_id": 1})
+  STATUS : success | retries=0 | 0.07s
+  RESULT : {'status': 'success', 'data': [PatientDocument(file_path='data/patient_demo/patient_notes.pdf', page_number=1, note_type='admission_note', raw_text='CASE RECORD / ADMISSION RECORD (1)\nDate of Admissi
+  NEXT   : Step succeeded — continue to next
+
+── Step 2 ──────────────────────────────
+  REASON : Plan step 2: 'Classify and extract entities from all documents'. Completed steps: [1]. Proceeding with tool 'document_parser'....
+  ACTION : document_parser({"step_id": 2})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': [{'file_path': 'data/patient_demo/patient_notes.pdf', 'page_number': 1, 'note_type': 'admission_note', 'extraction_confidence': 1.0, 'read_error': None, 'raw_text': 'CASE
+  NEXT   : Step succeeded — continue to next
+
+── Step 3 ──────────────────────────────
+  REASON : Plan step 3: 'Extract laboratory results and flag pending tests'. Completed steps: [1, 2]. Proceeding with tool 'lab_extractor'....
+  ACTION : lab_extractor({"step_id": 3})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': {'labs': [LabResult(test_name='Blood Glucose Rbs', value='443', unit='mg/dl', reference_range='70.0–140.0 mg/dL', status=<LabStatus.FINAL: 'final'>, date=None, is_abnorma
+  NEXT   : Step succeeded — continue to next
+
+── Step 4 ──────────────────────────────
+  REASON : Plan step 4: 'Detect conflicts between source notes'. Completed steps: [1, 2, 3]. Proceeding with tool 'conflict_detector'....
+  ACTION : conflict_detector({"step_id": 4})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': [], 'error': None, 'metadata': {'conflict_count': 0}, 'duration_s': 0.0}
+  NEXT   : Step succeeded — continue to next
+
+── Step 5 ──────────────────────────────
+  REASON : Plan step 5: 'Reconcile admission vs discharge medications'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'medication_reconciler'....
+  ACTION : medication_reconciler({"step_id": 5})
+  STATUS : failed | retries=0 | 3.00s
+  RESULT : {'status': 'not_found', 'data': None, 'error': 'Both admission and discharge medication lists are empty', 'metadata': {}, 'duration_s': 0.0}
+  NEXT   : Step failed (Both admission and discharge medication lists are empty) — marking required fields MISSING
+
+── Step 6 ──────────────────────────────
+  REASON : Plan step 6: 'Check discharge medications for drug interactions'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'drug_interaction_lookup'....
+  ACTION : drug_interaction_lookup({"step_id": 6})
+  STATUS : failed | retries=0 | 3.00s
+  RESULT : {'status': 'not_found', 'data': None, 'error': 'No medications found for drug interaction check', 'metadata': {}, 'duration_s': 0.0}
+  NEXT   : Step failed (No medications found for drug interaction check) — skipping
+
+── Step 7 ──────────────────────────────
+  REASON : Plan step 7: 'Escalate any critical issues found so far'. Completed steps: [1, 2, 3, 4]. Proceeding with tool 'escalate'....
+  ACTION : escalate({"step_id": 7})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': {'escalated_items': 17}, 'error': None, 'metadata': {'total_flags': 17}, 'duration_s': 0.0}
+  NEXT   : Step succeeded — continue to next
+  🚩 FLAG: ⚠️ [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — report awaited (context: 'ence of bacteria hence
+urine culture and sensitivity sent - ') (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — report awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — awaited (context: 'bacteria hence
+urine culture and sensitivity sent - report a') (Source: lab_extractor)
+
+── Step 8 ──────────────────────────────
+  REASON : Plan step 8: 'Synthesise hospital course narrative'. Completed steps: [1, 2, 3, 4, 7]. Proceeding with tool 'synthesise_hospital_course'....
+  ACTION : synthesise_hospital_course({"step_id": 8})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': {'hospital_course_length': 650}, 'error': None, 'metadata': {}, 'duration_s': 0.0}
+  NEXT   : Step succeeded — continue to next
+  🚩 FLAG: ⚠️ [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — report awaited (context: 'ence of bacteria hence
+urine culture and sensitivity sent - ') (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — report awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — awaited (context: 'bacteria hence
+urine culture and sensitivity sent - report a') (Source: lab_extractor)
+
+── Step 9 ──────────────────────────────
+  REASON : Plan step 9: 'Assemble final discharge summary draft'. Completed steps: [1, 2, 3, 4, 7, 8]. Proceeding with tool 'assemble_summary'....
+  ACTION : assemble_summary({"step_id": 9})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': {'summary_assembled': True}, 'error': None, 'metadata': {'sections': 14}, 'duration_s': 0.0}
+  NEXT   : Step succeeded — continue to next
+  🚩 FLAG: ⚠️ [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — report awaited (context: 'ence of bacteria hence
+urine culture and sensitivity sent - ') (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — report awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — awaited (context: 'bacteria hence
+urine culture and sensitivity sent - report a') (Source: lab_extractor)
+
+── Step 10 ──────────────────────────────
+  REASON : Plan step 10: 'Run fabrication guard scan on assembled summary'. Completed steps: [1, 2, 3, 4, 7, 8, 9]. Proceeding with tool 'fabrication_guard'....
+  ACTION : fabrication_guard({"step_id": 10})
+  STATUS : success | retries=0 | 0.00s
+  RESULT : {'status': 'success', 'data': {'passed': True, 'issues_found': 0, 'issues': []}, 'error': None, 'metadata': {}, 'duration_s': 0.0}
+  NEXT   : Step succeeded — continue to next
+  🚩 FLAG: ⚠️ [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ⚠️ [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — report awaited (context: 'ence of bacteria hence
+urine culture and sensitivity sent - ') (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — report awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity — awaited (Source: lab_extractor)
+  🚩 FLAG: ℹ️ [INFORMATIONAL] pending_results: Result still pending: Unknown test — awaited (context: 'bacteria hence
+urine culture and sensitivity sent - report a') (Source: lab_extractor)

@@ -1,0 +1,147 @@
+{
+  "is_draft": true,
+  "patient_id": "patient_demo",
+  "patient_demographics": "[MISSING \u2014 requires clinician review]",
+  "admission_date": "[MISSING \u2014 requires clinician review]",
+  "discharge_date": "[MISSING \u2014 requires clinician review]",
+  "principal_diagnosis": "[MISSING \u2014 requires clinician review]",
+  "secondary_diagnoses": [],
+  "hospital_course": "Synthesised from source notes (LLM unavailable):\n[ADMISSION_NOTE | data/patient_demo/patient_notes.pdf:p1]\nCASE RECORD / ADMISSION RECORD (1)\nDate of Admission: 26/02/2026\nChief Complaints: Fever, Generalized weakness Since 3 days, Myalgia.\nHistory of Present Illness: Patient on his regular medication.\nGradually c/o Fever, Myalgia, Generalized wea\n[DISCHARGE_SUMMARY | data/patient_demo/patient_notes.pdf:p3]\nDISCHARGE SUMMARY\nDIAGNOSIS:\n1) ACUTE GASTROENTERITIS WITH DEHYDRATION\n2) URINARY TRACT INFECTION\nHISTORY: C/O Multiple episodes of loose stools, 2-3 episodes of vomiting,\nfatigue since 3 days and fever since yesterday.\nInitially she was t",
+  "procedures": [],
+  "admission_vitals": null,
+  "discharge_vitals": null,
+  "admission_medications": [],
+  "discharge_medications": [],
+  "medication_changes": [],
+  "allergies": "[MISSING \u2014 requires clinician review]",
+  "drug_interaction_flags": [],
+  "follow_up_instructions": "[MISSING \u2014 requires clinician review]",
+  "pending_results": [
+    "Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ')",
+    "Urine culture and sensitivity \u2014 report awaited",
+    "Urine culture and sensitivity \u2014 awaited",
+    "Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a')"
+  ],
+  "key_lab_results": [
+    {
+      "test_name": "Blood Glucose Rbs",
+      "value": "443",
+      "unit": "mg/dl",
+      "reference_range": "70.0\u2013140.0 mg/dL",
+      "status": "final",
+      "date": null,
+      "is_abnormal": true,
+      "source_note": "data/patient_demo/patient_notes.pdf:p1"
+    },
+    {
+      "test_name": "Hba1C",
+      "value": "13.9",
+      "unit": null,
+      "reference_range": null,
+      "status": "final",
+      "date": null,
+      "is_abnormal": null,
+      "source_note": "data/patient_demo/patient_notes.pdf:p1"
+    },
+    {
+      "test_name": "Haemoglobin",
+      "value": "11.4",
+      "unit": "gm",
+      "reference_range": "12.0\u201317.5 g/dL",
+      "status": "final",
+      "date": null,
+      "is_abnormal": true,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Wbc",
+      "value": "7160",
+      "unit": "cells/cumm",
+      "reference_range": null,
+      "status": "final",
+      "date": null,
+      "is_abnormal": null,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Platelets",
+      "value": "1.80",
+      "unit": "lakhs/cumm",
+      "reference_range": null,
+      "status": "final",
+      "date": null,
+      "is_abnormal": null,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Serum Creatinine",
+      "value": "0.85",
+      "unit": "mg/dl",
+      "reference_range": "0.7\u20131.4 mg/dL",
+      "status": "final",
+      "date": null,
+      "is_abnormal": false,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Sodium",
+      "value": "127.00",
+      "unit": "mmol/l",
+      "reference_range": "135.0\u2013150.0 mmol/L",
+      "status": "final",
+      "date": null,
+      "is_abnormal": true,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Ph",
+      "value": "7.39",
+      "unit": "",
+      "reference_range": "7.35\u20137.45",
+      "status": "final",
+      "date": null,
+      "is_abnormal": false,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    },
+    {
+      "test_name": "Hco3",
+      "value": "19.20",
+      "unit": "mmol/l",
+      "reference_range": "22.0\u201328.0 mmol/L",
+      "status": "final",
+      "date": null,
+      "is_abnormal": true,
+      "source_note": "data/patient_demo/patient_notes.pdf:p2"
+    }
+  ],
+  "discharge_condition": "[MISSING \u2014 requires clinician review]",
+  "discharge_destination": "[MISSING \u2014 requires clinician review]",
+  "conflicts_detected": [],
+  "clinician_flags": [
+    "\u26a0\ufe0f [HIGH] patient_demographics: Required field 'patient_demographics' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] admission_date: Required field 'admission_date' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] discharge_date: Required field 'discharge_date' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] principal_diagnosis: Required field 'principal_diagnosis' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] secondary_diagnoses: Required field 'secondary_diagnoses' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] hospital_course: Required field 'hospital_course' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] procedures: Required field 'procedures' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] admission_medications: Required field 'admission_medications' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] discharge_medications: Required field 'discharge_medications' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] medication_changes: Required field 'medication_changes' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] allergies: Required field 'allergies' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] follow_up_instructions: Required field 'follow_up_instructions' could not be extracted from source documents (Source: document_corpus)",
+    "\u26a0\ufe0f [HIGH] discharge_condition: Required field 'discharge_condition' could not be extracted from source documents (Source: document_corpus)",
+    "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 report awaited (context: 'ence of bacteria hence\nurine culture and sensitivity sent - ') (Source: lab_extractor)",
+    "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 report awaited (Source: lab_extractor)",
+    "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Urine culture and sensitivity \u2014 awaited (Source: lab_extractor)",
+    "\u2139\ufe0f [INFORMATIONAL] pending_results: Result still pending: Unknown test \u2014 awaited (context: 'bacteria hence\nurine culture and sensitivity sent - report a') (Source: lab_extractor)"
+  ],
+  "source_documents": [
+    "data/patient_demo/patient_notes.pdf:p1",
+    "data/patient_demo/patient_notes.pdf:p2",
+    "data/patient_demo/patient_notes.pdf:p3",
+    "data/patient_demo/patient_notes.pdf:p4"
+  ],
+  "unreadable_documents": [],
+  "fabrication_scan_passed": true
+}

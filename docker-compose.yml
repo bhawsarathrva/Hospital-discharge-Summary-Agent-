@@ -1,0 +1,10 @@
+services:
+  discharge-agent:
+    build: .
+    image: hospital-discharge-summary-agent:latest
+    env_file:
+      - .env
+    volumes:
+      - ./discharge_agent/data:/app/discharge_agent/data
+      - ./outputs:/app/outputs
+    command: python app.py

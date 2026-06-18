@@ -1,0 +1,77 @@
+{
+  "patient_id": "Patient Data",
+  "patient_dir": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+  "raw_documents": [
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 1,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 2,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 3,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable"
+    }
+  ],
+  "parsed_documents": [
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 1,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 2,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    },
+    {
+      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
+      "page_number": 3,
+      "note_type": "unknown",
+      "extraction_confidence": 0.1,
+      "read_error": "Empty page or unreadable",
+      "raw_text": "",
+      "entities": {
+        "parse_error": "No readable text"
+      }
+    }
+  ],
+  "unreadable_files": [],
+  "demographics": {},
+  "admission_date": null,
+  "discharge_date": null,
+  "diagnoses": [],
+  "discharge_diagnoses": [],
+  "procedures": [],
+  "admission_medications": [],
+  "discharge_medications": [],
+  "allergies": null,
+  "lab_results": [],
+  "pending_results": [],
+  "discharge_condition": null,
+  "follow_up": null,
+  "hospital_course": null
+}
