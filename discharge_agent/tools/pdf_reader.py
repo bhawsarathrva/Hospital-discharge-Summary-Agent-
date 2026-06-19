@@ -1,9 +1,3 @@
-"""
-tools/pdf_reader.py
-PDF ingestion tool.
-Uses PyMuPDF (fitz) for text extraction.
-Falls back gracefully on unreadable/corrupt pages.
-"""
 from __future__ import annotations
 
 import os
@@ -47,7 +41,9 @@ class PDFReaderTool(BaseTool):
         target = Path(path)
 
         if target.is_dir():
-            pdf_files = sorted(target.glob("data/Patient Data.pdf"))
+            pdf_files = sorted(target.glob("discharge_agent/data/Patient Data.pdf"))
+            if not pdf_files:
+                pdf_files = sorted(target.glob("**/Patient Data.pdf"))
             if not pdf_files:
                 return ToolResult(
                     status=ToolStatus.NOT_FOUND,

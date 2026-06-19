@@ -5,57 +5,21 @@
     {
       "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
       "page_number": 1,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable"
-    },
-    {
-      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
-      "page_number": 2,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable"
-    },
-    {
-      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
-      "page_number": 3,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable"
+      "note_type": "lab_result",
+      "extraction_confidence": 0.95,
+      "read_error": null
     }
   ],
   "parsed_documents": [
     {
       "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
       "page_number": 1,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable",
-      "raw_text": "",
+      "note_type": "lab_result",
+      "extraction_confidence": 0.95,
+      "read_error": null,
+      "raw_text": "DIAGNOSIS:\n\n1) ACUTE GASTROENTERITIS WITH DEHYDRATION\n2) URINARY TRACT INFECTION\n\nHISTORY: C/O Multiple episodes of loose stools, 2-3 episodes of vomiting, fatigue since 3 days and fever since yesterday. Initially she was treated at local clinic.\n\nPAST HISTORY:K/C/O Thyroid disorder on treatment.\n\nPHYSICAL EXAMINATION:\n\nPR-89/min, BP-130/80 mmHg, RR-20/min, SPO2-98% at room air.\nCNS-Conscious Oriented\nCVS-S1S2(+)\nRS-B/L NVBS(+)\nPA-Soft, non tender\n\nINVESTIGATIONS:\n\nReports Enclosed\n\nCOURSE IN THE HOSPITAL:\n\nPatient presented to us with above mentioned complaints. After evaluation, she\nwas admitted to ward. Initial investigations showed normal CBC. Serum\ncreatinine (1.65mg/dl) done was elevated. Serum electrolytes done showed low\nserum sodium(128.00mnol/L). Urine routine done showed ketone bodies(+), 10-\n12/hpf of pus cells, 15-20/hpf of epithelial cells with presence of bactreia hence\nurine culture and sensitivity sent- report awaited. She was treated with IV fluids,",
       "entities": {
-        "parse_error": "No readable text"
-      }
-    },
-    {
-      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
-      "page_number": 2,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable",
-      "raw_text": "",
-      "entities": {
-        "parse_error": "No readable text"
-      }
-    },
-    {
-      "file_path": "c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf",
-      "page_number": 3,
-      "note_type": "unknown",
-      "extraction_confidence": 0.1,
-      "read_error": "Empty page or unreadable",
-      "raw_text": "",
-      "entities": {
-        "parse_error": "No readable text"
+        "llm_error": "RetryError[<Future at 0x2aac321a710 state=finished raised NotFound>]"
       }
     }
   ],
@@ -70,7 +34,9 @@
   "discharge_medications": [],
   "allergies": null,
   "lab_results": [],
-  "pending_results": [],
+  "pending_results": [
+    "Awaited/Pending lab result in c:\\Users\\athrv\\OneDrive\\Desktop\\Hospital-discharge-Summary-Agent\\discharge_agent\\data\\Patient Data.pdf:p1"
+  ],
   "discharge_condition": null,
   "follow_up": null,
   "hospital_course": null
