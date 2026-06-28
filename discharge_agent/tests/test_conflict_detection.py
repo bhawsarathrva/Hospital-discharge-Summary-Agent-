@@ -2,21 +2,27 @@
 tests/test_conflict_detection.py
 Focused tests for conflict detection and fabrication guard logic.
 """
-import pytest
+
 from config.settings import SETTINGS
 from models.patient import Conflict
 from models.summary import DischargeSummary
-from tools.conflict_detector import ConflictDetectorTool, _detect_field_conflicts, _values_compatible
+from tools.conflict_detector import ConflictDetectorTool, _values_compatible
 
 
 class TestConflictDetectorEdgeCases:
     def test_partial_match_no_false_positive(self):
         # "DKA" vs "Diabetic Ketoacidosis" — should NOT be a conflict
         docs = [
-            {"file_path": "a.pdf", "page_number": 1,
-             "entities": {"diagnoses": ["DKA"]}},
-            {"file_path": "b.pdf", "page_number": 1,
-             "entities": {"diagnoses": ["Diabetic Ketoacidosis"]}},
+            {
+                "file_path": "a.pdf",
+                "page_number": 1,
+                "entities": {"diagnoses": ["DKA"]},
+            },
+            {
+                "file_path": "b.pdf",
+                "page_number": 1,
+                "entities": {"diagnoses": ["Diabetic Ketoacidosis"]},
+            },
         ]
         tool = ConflictDetectorTool()
         result = tool.run(extracted_documents=docs)
@@ -26,10 +32,16 @@ class TestConflictDetectorEdgeCases:
 
     def test_clearly_different_diagnoses_flagged(self):
         docs = [
-            {"file_path": "a.pdf", "page_number": 1,
-             "entities": {"diagnoses": ["Acute Gastroenteritis"]}},
-            {"file_path": "b.pdf", "page_number": 1,
-             "entities": {"diagnoses": ["Myocardial Infarction"]}},
+            {
+                "file_path": "a.pdf",
+                "page_number": 1,
+                "entities": {"diagnoses": ["Acute Gastroenteritis"]},
+            },
+            {
+                "file_path": "b.pdf",
+                "page_number": 1,
+                "entities": {"diagnoses": ["Myocardial Infarction"]},
+            },
         ]
         tool = ConflictDetectorTool()
         result = tool.run(extracted_documents=docs)
@@ -85,7 +97,9 @@ class TestFabricationGuard:
         )
         issues = summary.validate_completeness()
         # Should have fewer (or zero) issues now
-        missing_count = len([i for i in issues if "demographics" in i or "diagnosis" in i])
+        missing_count = len(
+            [i for i in issues if "demographics" in i or "diagnosis" in i]
+        )
         assert missing_count == 0
 
     def test_markdown_includes_draft_warning(self):
@@ -96,6 +110,7 @@ class TestFabricationGuard:
 
     def test_to_dict_serializable(self):
         import json
+
         summary = DischargeSummary(patient_id="test")
         d = summary.to_dict()
         # Should be JSON serialisable

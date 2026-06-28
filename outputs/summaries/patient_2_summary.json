@@ -21,8 +21,10 @@
   "discharge_condition": "[MISSING \u2014 requires clinician review]",
   "discharge_destination": "[MISSING \u2014 requires clinician review]",
   "conflicts_detected": [],
-  "clinician_flags": [],
+  "clinician_flags": [
+    "\u26a0\ufe0f [CRITICAL] Summary assembly failed \u2014 all fields require manual entry"
+  ],
   "source_documents": [],
   "unreadable_documents": [],
-  "fabrication_scan_passed": true
+  "fabrication_scan_passed": false
 }

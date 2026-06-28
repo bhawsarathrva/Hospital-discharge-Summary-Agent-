@@ -3,31 +3,29 @@ agent/executor.py
 Tool executor — dispatches tool calls, handles retries, updates agent state.
 Never raises unhandled exceptions — all failures are captured as ToolResult(FAILED).
 """
+
 from __future__ import annotations
 
-import json
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
-from tenacity import retry, stop_after_attempt, wait_exponential
 
 from config.settings import SETTINGS
 from agent.state import AgentState
 from models.patient import (
-    Conflict, LabResult, LabStatus, Medication,
-    MedicationStatus, Procedure, VitalSigns,
+    Medication,
+    Procedure,
 )
-from models.summary import DischargeSummary, MedicationChange
+from models.summary import DischargeSummary
 from models.trace import AgentStep, StepStatus
 from tools.base import ToolResult, ToolStatus
 from tools.conflict_detector import ConflictDetectorTool
 from tools.document_parser import DocumentParserTool
 from tools.drug_interaction import DrugInteractionTool
-from tools.escalation import EscalationSeverity, EscalationTool
+from tools.escalation import EscalationTool
 from tools.lab_extractor import LabExtractorTool
 from tools.medication_reconciler import MedicationReconcilerTool
 from tools.pdf_reader import PDFReaderTool
-from utils.json_utils import safe_json_parse
 
 
 class Executor:
@@ -119,11 +117,11 @@ class Executor:
                     return last_result
                 # Brief backoff before retry
                 if attempt < SETTINGS.max_retries_per_tool - 1:
-                    time.sleep(SETTINGS.retry_base_delay_s * (2 ** attempt))
+                    time.sleep(SETTINGS.retry_base_delay_s * (2**attempt))
             except Exception as exc:
                 last_result = ToolResult(
                     status=ToolStatus.FAILED,
-                    error=f"Attempt {attempt+1} exception: {exc}",
+                    error=f"Attempt {attempt + 1} exception: {exc}",
                 )
         return last_result
 
@@ -225,7 +223,10 @@ class Executor:
                     duration=med_dict.get("duration"),
                     source_note=f"{doc.get('file_path')}:p{doc.get('page_number')}",
                 )
-                if note_type in ("discharge_summary", "medication_record") and "discharge" in doc.get("raw_text", "").lower():
+                if (
+                    note_type in ("discharge_summary", "medication_record")
+                    and "discharge" in doc.get("raw_text", "").lower()
+                ):
                     if med.name not in [m.name for m in state.discharge_medications]:
                         state.discharge_medications.append(med)
                 else:
@@ -388,8 +389,11 @@ class Executor:
 
         # Gather relevant notes sorted by note type priority
         note_priority = [
-            "admission_note", "progress_note", "nursing_documentation",
-            "icu_chart", "discharge_summary",
+            "admission_note",
+            "progress_note",
+            "nursing_documentation",
+            "icu_chart",
+            "discharge_summary",
         ]
         relevant_texts = []
         for priority_type in note_priority:
@@ -399,7 +403,7 @@ class Executor:
                     if text.strip():
                         relevant_texts.append(
                             f"[{priority_type.upper()} | "
-                            f"{doc.get('file_path','?')}:p{doc.get('page_number','?')}]\n{text}"
+                            f"{doc.get('file_path', '?')}:p{doc.get('page_number', '?')}]\n{text}"
                         )
 
         if not relevant_texts:
@@ -413,6 +417,7 @@ class Executor:
 
         if self.llm:
             from prompts.extraction_prompt import HOSPITAL_COURSE_PROMPT_TEMPLATE
+
             prompt = HOSPITAL_COURSE_PROMPT_TEMPLATE.format(notes_text=combined)
             try:
                 narrative = self.llm.complete(prompt, max_tokens=600)
@@ -434,24 +439,25 @@ class Executor:
             data={"hospital_course_length": len(state.hospital_course)},
         )
 
-    def _run_assemble_summary(
-        self, step: Dict, state: AgentState
-    ) -> ToolResult:
+    def _run_assemble_summary(self, step: Dict, state: AgentState) -> ToolResult:
         """
         Build the DischargeSummary object from everything in state.
         Every missing field gets the sentinel — never left blank.
         """
         M = SETTINGS.missing_sentinel
-        P = SETTINGS.pending_sentinel
 
         # Demographics string
         demo = state.demographics
         demo_str = (
-            f"Name: {demo.get('name', M)} | "
-            f"Age: {demo.get('age', M)} | "
-            f"Sex: {demo.get('sex', M)} | "
-            f"MRN: {demo.get('mrn', M)}"
-        ) if demo else M
+            (
+                f"Name: {demo.get('name', M)} | "
+                f"Age: {demo.get('age', M)} | "
+                f"Sex: {demo.get('sex', M)} | "
+                f"MRN: {demo.get('mrn', M)}"
+            )
+            if demo
+            else M
+        )
 
         # Principal vs secondary diagnoses
         all_diag = state.diagnoses or state.discharge_diagnoses
@@ -488,7 +494,7 @@ class Executor:
             conflicts_detected=state.conflicts,
             clinician_flags=state.clinician_flags,
             source_documents=[
-                f"{d.get('file_path','?')}:p{d.get('page_number','?')}"
+                f"{d.get('file_path', '?')}:p{d.get('page_number', '?')}"
                 for d in state.parsed_documents
             ],
             unreadable_documents=state.unreadable_files,
@@ -504,9 +510,7 @@ class Executor:
             metadata={"sections": len(SETTINGS.required_sections)},
         )
 
-    def _run_fabrication_guard(
-        self, step: Dict, state: AgentState
-    ) -> ToolResult:
+    def _run_fabrication_guard(self, step: Dict, state: AgentState) -> ToolResult:
         """
         Post-assembly scan:
         1. Check all required fields are populated (or marked MISSING/PENDING)
@@ -525,9 +529,13 @@ class Executor:
         for field_name in SETTINGS.required_sections:
             val = getattr(summary, field_name, None)
             if val is None:
-                issues.append(f"Field '{field_name}' is None (not set to MISSING sentinel)")
+                issues.append(
+                    f"Field '{field_name}' is None (not set to MISSING sentinel)"
+                )
             elif isinstance(val, str) and val.strip() == "":
-                issues.append(f"Field '{field_name}' is empty string (should be MISSING sentinel)")
+                issues.append(
+                    f"Field '{field_name}' is empty string (should be MISSING sentinel)"
+                )
 
         if issues:
             for issue in issues:

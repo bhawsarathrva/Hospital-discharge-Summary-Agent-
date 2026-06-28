@@ -7,19 +7,19 @@ The agent calls this when it finds something it cannot safely resolve autonomous
   - Missing mandatory fields
   - Medications changed without documented reason
 """
+
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
-from config.settings import SETTINGS
 from tools.base import BaseTool, ToolResult, ToolStatus
 
 
 class EscalationSeverity(str, Enum):
-    CRITICAL = "critical"        # Potential patient harm if ignored
-    HIGH = "high"                # Needs clinician attention before finalisation
+    CRITICAL = "critical"  # Potential patient harm if ignored
+    HIGH = "high"  # Needs clinician attention before finalisation
     INFORMATIONAL = "informational"  # FYI — clinician should be aware
 
 
@@ -29,10 +29,12 @@ class EscalationRecord:
     field: str
     message: str
     source_evidence: Optional[str] = None
-    auto_formatted: str = ""     # Pre-formatted flag string for summary
+    auto_formatted: str = ""  # Pre-formatted flag string for summary
 
     def __post_init__(self):
-        icon = {"critical": "🚨", "high": "⚠️", "informational": "ℹ️"}[self.severity.value]
+        icon = {"critical": "🚨", "high": "⚠️", "informational": "ℹ️"}[
+            self.severity.value
+        ]
         self.auto_formatted = (
             f"{icon} [{self.severity.value.upper()}] {self.field}: {self.message}"
             + (f" (Source: {self.source_evidence})" if self.source_evidence else "")
@@ -54,6 +56,7 @@ class EscalationTool(BaseTool):
     All flags are persisted in the summary's clinician_flags list.
     The agent calls this instead of guessing or silently ignoring issues.
     """
+
     name = "escalate"
     description = (
         "Flag an issue for clinician review. Call this when: "

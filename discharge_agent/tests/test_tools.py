@@ -3,18 +3,19 @@ tests/test_tools.py
 Unit tests for all tools.
 Run: pytest tests/test_tools.py -v
 """
-import pytest
+
 from models.patient import Medication, MedicationStatus, PatientDocument
 from tools.base import ToolStatus
 from tools.conflict_detector import ConflictDetectorTool
 from tools.document_parser import DocumentParserTool
 from tools.drug_interaction import DrugInteractionTool
-from tools.escalation import EscalationSeverity, EscalationTool
+from tools.escalation import EscalationTool
 from tools.lab_extractor import LabExtractorTool
 from tools.medication_reconciler import MedicationReconcilerTool
 
 
 # ── DocumentParser ──────────────────────────────────────────────────────────
+
 
 class TestDocumentParser:
     def setup_method(self):
@@ -61,6 +62,7 @@ class TestDocumentParser:
 
 # ── LabExtractor ────────────────────────────────────────────────────────────
 
+
 class TestLabExtractor:
     def setup_method(self):
         self.tool = LabExtractorTool()
@@ -76,7 +78,11 @@ class TestLabExtractor:
         result = self.tool.run(documents=[doc])
         assert result.ok
         labs = result.data["labs"]
-        hb_labs = [l for l in labs if "Haemoglobin" in l.test_name or "haemoglobin" in l.test_name.lower()]
+        hb_labs = [
+            l
+            for l in labs
+            if "Haemoglobin" in l.test_name or "haemoglobin" in l.test_name.lower()
+        ]
         assert len(hb_labs) > 0
         assert hb_labs[0].value is not None
 
@@ -124,6 +130,7 @@ class TestLabExtractor:
 
 # ── MedicationReconciler ────────────────────────────────────────────────────
 
+
 class TestMedicationReconciler:
     def setup_method(self):
         self.tool = MedicationReconcilerTool()
@@ -166,6 +173,7 @@ class TestMedicationReconciler:
 
 
 # ── ConflictDetector ────────────────────────────────────────────────────────
+
 
 class TestConflictDetector:
     def setup_method(self):
@@ -213,6 +221,7 @@ class TestConflictDetector:
 
 # ── DrugInteraction ─────────────────────────────────────────────────────────
 
+
 class TestDrugInteraction:
     def setup_method(self):
         self.tool = DrugInteractionTool()
@@ -242,6 +251,7 @@ class TestDrugInteraction:
 
 # ── EscalationTool ───────────────────────────────────────────────────────────
 
+
 class TestEscalation:
     def setup_method(self):
         self.tool = EscalationTool()
@@ -260,7 +270,11 @@ class TestEscalation:
 
     def test_critical_flag_in_critical_list(self):
         self.tool.reset()
-        self.tool.run(severity="critical", field="drug_interactions", message="HIGH drug interaction")
+        self.tool.run(
+            severity="critical",
+            field="drug_interactions",
+            message="HIGH drug interaction",
+        )
         critical = self.tool.get_critical_flags()
         assert len(critical) == 1
 

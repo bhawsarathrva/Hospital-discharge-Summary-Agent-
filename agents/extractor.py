@@ -15,12 +15,16 @@ if workspace_root not in sys.path:
 
 import importlib.util
 
+
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 pdf_reader = _load_root_tool("pdf_reader")
 read_pdf_directory = pdf_reader.read_pdf_directory
@@ -28,9 +32,10 @@ read_pdf_directory = pdf_reader.read_pdf_directory
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
 from config.settings import SETTINGS
-from discharge_agent.models.patient import PatientDocument, LabResult, LabStatus, Medication, Procedure
+from discharge_agent.models.patient import LabResult, LabStatus, Medication, Procedure
 
 logger = get_logger("extractor_agent")
+
 
 class ExtractorAgent:
     def __init__(self, llm_client: Optional[Any] = None):
@@ -61,14 +66,18 @@ class ExtractorAgent:
             if hasattr(state, "add_flag"):
                 state.add_flag(f"[ERROR] PDF Ingestion failed: {exc}")
             elif isinstance(state, dict):
-                state.setdefault("clinician_flags", []).append(f"[ERROR] PDF Ingestion failed: {exc}")
+                state.setdefault("clinician_flags", []).append(
+                    f"[ERROR] PDF Ingestion failed: {exc}"
+                )
             return state
 
         parsed_docs: List[Dict[str, Any]] = []
 
         # 2. Parse, Classify and Extract entities per document page
         for doc in raw_docs:
-            logger.info(f"Processing document page: {doc.file_path} page {doc.page_number}")
+            logger.info(
+                f"Processing document page: {doc.file_path} page {doc.page_number}"
+            )
             note_type = self._keyword_classify(doc.raw_text)
             doc.note_type = note_type
 
@@ -116,7 +125,9 @@ class ExtractorAgent:
 
         for p_doc in parsed_docs:
             entities = p_doc.get("entities", {})
-            source = f"{p_doc.get('file_path', 'unknown')}:p{p_doc.get('page_number', '?')}"
+            source = (
+                f"{p_doc.get('file_path', 'unknown')}:p{p_doc.get('page_number', '?')}"
+            )
             note_type = p_doc.get("note_type", "unknown")
 
             # Demographics
@@ -155,9 +166,7 @@ class ExtractorAgent:
                             )
                         )
                     elif isinstance(p, str) and p.strip():
-                        procedures.append(
-                            Procedure(name=p.strip(), source_note=source)
-                        )
+                        procedures.append(Procedure(name=p.strip(), source_note=source))
 
             # Medications
             meds = entities.get("medications", [])
@@ -174,7 +183,11 @@ class ExtractorAgent:
                             source_note=source,
                         )
                         # Determine if admission or discharge med
-                        is_discharge = "discharge" in note_type or "discharge" in source.lower() or "discharge" in str(m.get("status", "")).lower()
+                        is_discharge = (
+                            "discharge" in note_type
+                            or "discharge" in source.lower()
+                            or "discharge" in str(m.get("status", "")).lower()
+                        )
                         if is_discharge:
                             discharge_meds.append(med_obj)
                         else:
@@ -241,9 +254,15 @@ class ExtractorAgent:
             state.allergies = ", ".join(set(allergies_list)) if allergies_list else None
             state.lab_results = final_labs
             state.pending_results = list(set(pending_labs))
-            state.discharge_condition = discharge_conditions[0] if discharge_conditions else None
+            state.discharge_condition = (
+                discharge_conditions[0] if discharge_conditions else None
+            )
             state.follow_up = "; ".join(set(follow_ups)) if follow_ups else None
-            state.hospital_course = "\n".join(hospital_course_snippets) if hospital_course_snippets else None
+            state.hospital_course = (
+                "\n".join(hospital_course_snippets)
+                if hospital_course_snippets
+                else None
+            )
         elif isinstance(state, dict):
             state["raw_documents"] = [d.to_dict() for d in raw_docs]
             state["parsed_documents"] = parsed_docs
@@ -255,12 +274,20 @@ class ExtractorAgent:
             state["procedures"] = [p.to_dict() for p in procedures]
             state["admission_medications"] = [m.to_dict() for m in admission_meds]
             state["discharge_medications"] = [m.to_dict() for m in discharge_meds]
-            state["allergies"] = ", ".join(set(allergies_list)) if allergies_list else None
+            state["allergies"] = (
+                ", ".join(set(allergies_list)) if allergies_list else None
+            )
             state["lab_results"] = [lr.to_dict() for lr in final_labs]
             state["pending_results"] = list(set(pending_labs))
-            state["discharge_condition"] = discharge_conditions[0] if discharge_conditions else None
+            state["discharge_condition"] = (
+                discharge_conditions[0] if discharge_conditions else None
+            )
             state["follow_up"] = "; ".join(set(follow_ups)) if follow_ups else None
-            state["hospital_course"] = "\n".join(hospital_course_snippets) if hospital_course_snippets else None
+            state["hospital_course"] = (
+                "\n".join(hospital_course_snippets)
+                if hospital_course_snippets
+                else None
+            )
 
         return state
 
@@ -327,11 +354,26 @@ Return ONLY the JSON object, no other text."""
     def _extract_regex_labs(self, parsed_docs: List[Dict[str, Any]]) -> List[LabResult]:
         # Regex patterns for clinical labs
         patterns = [
-            ("haemoglobin", r"h(?:a?e)?moglobin\s*(?:\([^)]*\))?\s*[:\-]?\s*([\d.]+)\s*(g[m/]?d?[lL]?)?"),
-            ("serum_creatinine", r"(?:serum\s+)?creatinine\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?"),
-            ("sodium", r"(?:s\.?sodium|serum\s+sodium|s\.?na\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?"),
-            ("potassium", r"(?:s\.?potassium|serum\s+potassium|s\.?k\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?"),
-            ("blood_glucose_rbs", r"(?:rbs|random\s+blood\s+sugar|blood\s+glucose)\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?"),
+            (
+                "haemoglobin",
+                r"h(?:a?e)?moglobin\s*(?:\([^)]*\))?\s*[:\-]?\s*([\d.]+)\s*(g[m/]?d?[lL]?)?",
+            ),
+            (
+                "serum_creatinine",
+                r"(?:serum\s+)?creatinine\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?",
+            ),
+            (
+                "sodium",
+                r"(?:s\.?sodium|serum\s+sodium|s\.?na\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?",
+            ),
+            (
+                "potassium",
+                r"(?:s\.?potassium|serum\s+potassium|s\.?k\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?",
+            ),
+            (
+                "blood_glucose_rbs",
+                r"(?:rbs|random\s+blood\s+sugar|blood\s+glucose)\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?",
+            ),
         ]
         ranges = {
             "haemoglobin": (12.0, 17.5, "g/dL"),
@@ -352,9 +394,13 @@ Return ONLY the JSON object, no other text."""
                 if m:
                     val = m.group(1)
                     unit = m.group(2) if m.lastindex >= 2 else None
-                    ref_min, ref_max, ref_unit = ranges.get(test_name, (None, None, None))
-                    ref_range = f"{ref_min}–{ref_max} {ref_unit}".strip() if ref_min else None
-                    
+                    ref_min, ref_max, ref_unit = ranges.get(
+                        test_name, (None, None, None)
+                    )
+                    ref_range = (
+                        f"{ref_min}–{ref_max} {ref_unit}".strip() if ref_min else None
+                    )
+
                     is_abnormal = None
                     if ref_min is not None and val:
                         try:
@@ -385,27 +431,30 @@ Return ONLY the JSON object, no other text."""
                 seen[key] = lab
         return list(seen.values())
 
+
 if __name__ == "__main__":
     import json
     from dotenv import load_dotenv
     from discharge_agent.utils.llm_client import LLMClient
-    
+
     load_dotenv()
-    api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get("GEMINI_API_KEY", "")
-    
+    api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get(
+        "GEMINI_API_KEY", ""
+    )
+
     # Initialize LLM Client
     llm_client = None
     if api_key:
         llm_client = LLMClient(api_key=api_key, model="gemini-1.5-flash")
-        
+
     extractor = ExtractorAgent(llm_client)
-    
+
     # Input path
-    pdf_path = r"c:\Users\athrv\OneDrive\Desktop\Hospital-discharge-Summary-Agent\discharge_agent\data\Patient Data.pdf"
+    pdf_path = r"c:\Users\athrv\OneDrive\Desktop\Hospital-discharge-Summary-Agent\discharge_agent\data\Medical bills.pdf"
     print(f"Running extraction on: {pdf_path}")
-    
+
     state = {
-        "patient_id": "Patient Data",
+        "patient_id": "Medical bills",
         "patient_dir": pdf_path,
         "raw_documents": [],
         "parsed_documents": [],
@@ -425,27 +474,27 @@ if __name__ == "__main__":
         "follow_up": None,
         "hospital_course": None,
     }
-    
+
     # Force page limit to a small subset for testing since the PDF has 71 pages of scanned images
     # We can modify the read_pdf_directory page limit if needed, but let's run a subset of 3 pages first to test
     # Or run the full document. Let's make it run 3 pages for a quick demonstration, or run all.
     # Actually, we can run all but let's allow it to run all 71 pages or configure a cap.
     # Let's set page_limit = 5 for quick run so it doesn't take too long during validation, but can be overridden.
     print("Running extraction on the first 5 pages for rapid validation...")
-    
+
     # Since extractor agent calls read_pdf_directory with the state path,
     # let's patch read_pdf_directory's default page limit or read the pdf file directly.
     # In extractor.py line 66: raw_docs = read_pdf_directory(patient_dir)
     # We can temporarily edit tools/pdf_reader.py default limit or pass it.
     # Let's run it!
     result = extractor.run(state)
-    
+
     # Write parsed documents to a JSON file (acting as our database store)
     out_dir = Path("outputs")
     out_dir.mkdir(exist_ok=True)
     out_file = out_dir / "patient_data_extracted.json"
-    
+
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, default=str)
-        
+
     print(f"Extraction complete! Saved extracted wording to {out_file}")

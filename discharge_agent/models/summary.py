@@ -3,9 +3,9 @@ models/summary.py
 DischargeSummary — the structured output produced by the agent.
 Every field is Optional; missing fields are filled with SETTINGS.missing_sentinel.
 """
+
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -25,7 +25,7 @@ class MedicationChange:
     medication: Medication
     change_type: MedicationStatus
     reason_documented: bool
-    flag_message: Optional[str] = None   # Set if change_reason is missing
+    flag_message: Optional[str] = None  # Set if change_reason is missing
 
     def to_dict(self) -> dict:
         return {
@@ -42,6 +42,7 @@ class DischargeSummary:
     Structured discharge summary draft.
     Never auto-finalized — always a draft for clinician review.
     """
+
     patient_id: str = SETTINGS.missing_sentinel
 
     # Demographics
@@ -89,13 +90,13 @@ class DischargeSummary:
 
     # Meta
     conflicts_detected: List[Conflict] = field(default_factory=list)
-    clinician_flags: List[str] = field(default_factory=list)   # All escalations
+    clinician_flags: List[str] = field(default_factory=list)  # All escalations
     source_documents: List[str] = field(default_factory=list)
     unreadable_documents: List[str] = field(default_factory=list)
 
     # Guardrail
     fabrication_scan_passed: bool = False
-    is_draft: bool = True    # Always True — never auto-finalized
+    is_draft: bool = True  # Always True — never auto-finalized
 
     def validate_completeness(self) -> List[str]:
         """
@@ -125,8 +126,12 @@ class DischargeSummary:
             "secondary_diagnoses": self.secondary_diagnoses,
             "hospital_course": self.hospital_course,
             "procedures": [p.to_dict() for p in self.procedures],
-            "admission_vitals": self.admission_vitals.to_dict() if self.admission_vitals else None,
-            "discharge_vitals": self.discharge_vitals.to_dict() if self.discharge_vitals else None,
+            "admission_vitals": self.admission_vitals.to_dict()
+            if self.admission_vitals
+            else None,
+            "discharge_vitals": self.discharge_vitals.to_dict()
+            if self.discharge_vitals
+            else None,
             "admission_medications": [m.to_dict() for m in self.admission_medications],
             "discharge_medications": [m.to_dict() for m in self.discharge_medications],
             "medication_changes": [mc.to_dict() for mc in self.medication_changes],
@@ -176,7 +181,9 @@ class DischargeSummary:
         ]
         if self.procedures:
             for p in self.procedures:
-                lines.append(f"- **{p.name}** | Date: {p.date or 'unknown'} | {p.notes or ''}")
+                lines.append(
+                    f"- **{p.name}** | Date: {p.date or 'unknown'} | {p.notes or ''}"
+                )
         else:
             lines.append("None documented.")
 
@@ -210,7 +217,7 @@ class DischargeSummary:
 
         lines += [
             "",
-            f"## Allergies",
+            "## Allergies",
             self.allergies,
             "",
             "## Drug Interaction Flags",

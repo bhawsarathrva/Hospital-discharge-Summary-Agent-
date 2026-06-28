@@ -3,6 +3,7 @@ tools/base.py
 Base classes for all agent tools.
 Every tool returns a ToolResult — never raises unhandled exceptions.
 """
+
 from __future__ import annotations
 
 import time
@@ -14,8 +15,8 @@ from typing import Any, Dict, Optional
 
 class ToolStatus(str, Enum):
     SUCCESS = "success"
-    PARTIAL = "partial"       # Some data returned but incomplete
-    FAILED = "failed"         # No usable data returned
+    PARTIAL = "partial"  # Some data returned but incomplete
+    FAILED = "failed"  # No usable data returned
     TIMEOUT = "timeout"
     NOT_FOUND = "not_found"
 
@@ -53,6 +54,7 @@ class BaseTool(ABC):
     Tools are responsible for their own error handling — they return
     ToolResult(FAILED) rather than raising exceptions.
     """
+
     name: str = "base_tool"
     description: str = ""
 

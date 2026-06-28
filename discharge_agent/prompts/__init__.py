@@ -1,6 +1,9 @@
 from .system_prompt import SYSTEM_PROMPT, FABRICATION_REMINDER
 from .planning_prompt import PLANNING_PROMPT_TEMPLATE
-from .extraction_prompt import EXTRACTION_PROMPT_TEMPLATE, HOSPITAL_COURSE_PROMPT_TEMPLATE
+from .extraction_prompt import (
+    EXTRACTION_PROMPT_TEMPLATE,
+    HOSPITAL_COURSE_PROMPT_TEMPLATE,
+)
 from .reconciliation_prompt import RECONCILIATION_PROMPT_TEMPLATE
 from .summary_assembly_prompt import SUMMARY_ASSEMBLY_PROMPT_TEMPLATE
 

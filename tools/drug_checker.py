@@ -3,6 +3,7 @@ tools/drug_checker.py
 Mock drug-interaction lookup tool.
 Identifies potential interactions in a list of medications.
 """
+
 from __future__ import annotations
 from typing import Dict, List, Optional, Tuple
 
@@ -39,6 +40,7 @@ KNOWN_INTERACTIONS: Dict[Tuple[str, str], Tuple[str, str]] = {
 
 SEVERITY_RANK = {"HIGH": 3, "MODERATE": 2, "LOW": 1}
 
+
 def check_drug_interactions(medication_names: List[str]) -> List[dict]:
     """Check a list of medication names for known interactions."""
     normalised = [_normalise_drug_name(m) for m in medication_names]
@@ -64,13 +66,13 @@ def check_drug_interactions(medication_names: List[str]) -> List[dict]:
                     }
                 )
 
-    interactions.sort(
-        key=lambda x: SEVERITY_RANK.get(x["severity"], 0), reverse=True
-    )
+    interactions.sort(key=lambda x: SEVERITY_RANK.get(x["severity"], 0), reverse=True)
     return interactions
+
 
 def _normalise_drug_name(name: str) -> str:
     return name.lower().strip().split()[0] if name.strip() else ""
+
 
 def _fuzzy_match(a: str, b: str) -> Optional[Tuple[str, str]]:
     for (ka, kb), v in KNOWN_INTERACTIONS.items():

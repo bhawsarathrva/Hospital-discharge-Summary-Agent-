@@ -3,27 +3,34 @@ workflows/graph.py
 State graph definition for the multi-agent discharge summary pipeline.
 Compiles a lightweight Directed Acyclic Graph (DAG) workflow runner.
 """
+
 from __future__ import annotations
 from typing import Any, Callable, Dict, List, Optional
 import importlib.util
 from pathlib import Path
 
+
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
 
 logger = get_logger("workflow_graph")
 
+
 class StateGraph:
     """
     StateGraph defines a lightweight agentic state transition engine.
     """
+
     def __init__(self):
         self.nodes: Dict[str, Callable[[Any], Any]] = {}
         self.edges: List[tuple[str, str]] = []
@@ -46,13 +53,17 @@ class StateGraph:
         if not self.entry_point:
             raise ValueError("Entry point must be set before compiling.")
         if self.entry_point not in self.nodes:
-            raise ValueError(f"Entry point '{self.entry_point}' is not registered as a node.")
+            raise ValueError(
+                f"Entry point '{self.entry_point}' is not registered as a node."
+            )
         return CompiledGraph(self)
+
 
 class CompiledGraph:
     """
     CompiledGraph executes compiled state transition loops.
     """
+
     def __init__(self, graph: StateGraph):
         self.graph = graph
 
@@ -71,13 +82,16 @@ class CompiledGraph:
                 raise exc
 
             # Determine transition (linear / simple edge lookup)
-            transitions = [end for start, end in self.graph.edges if start == current_node]
+            transitions = [
+                end for start, end in self.graph.edges if start == current_node
+            ]
             if transitions:
                 current_node = transitions[0]  # Move to the next node
             else:
                 current_node = None  # Graph terminal state reached
 
         return state
+
 
 def create_discharge_workflow(llm_client: Optional[Any] = None) -> CompiledGraph:
     """

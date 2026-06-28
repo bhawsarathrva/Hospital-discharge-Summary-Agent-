@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+
 # Configure stdout/stderr to use UTF-8 to avoid encoding crashes on Windows
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -18,6 +19,7 @@ from dotenv import load_dotenv
 from config.settings import SETTINGS
 
 load_dotenv()
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -75,10 +77,10 @@ def run_patient(
     traces_dir.mkdir(parents=True, exist_ok=True)
     summaries_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"  Processing patient: {patient_id}")
     print(f"  Source: {patient_dir}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     loop = AgentLoop(llm_client=llm_client, verbose=verbose)
 
@@ -92,25 +94,27 @@ def run_patient(
         traceback.print_exc()
         return {"patient_id": patient_id, "status": "fatal_error", "error": str(exc)}
 
-    # 1. JSON summary
     summary_json_path = summaries_dir / f"{patient_id}_summary.json"
     with open(summary_json_path, "w", encoding="utf-8") as f:
         json.dump(summary.to_dict(), f, indent=2, default=str)
 
-    # 2. Markdown summary
     summary_md_path = summaries_dir / f"{patient_id}_summary.md"
     with open(summary_md_path, "w", encoding="utf-8") as f:
         f.write(summary.to_markdown())
-
-    # 3. JSON trace
     trace_path = traces_dir / f"{patient_id}_trace.json"
     with open(trace_path, "w", encoding="utf-8") as f:
         json.dump(trace.to_dict(), f, indent=2, default=str)
 
-    # 4. Readable trace text
     trace_txt_path = traces_dir / f"{patient_id}_trace.txt"
     with open(trace_txt_path, "w", encoding="utf-8") as f:
         f.write(trace.to_readable())
+    try:
+        from utils.db import save_patient_summary, save_execution_trace
+
+        save_patient_summary(patient_id, summary.to_dict())
+        save_execution_trace(patient_id, trace.to_dict())
+    except Exception as db_exc:
+        print(f"[WARNING] Could not save patient data to MongoDB: {db_exc}")
 
     print(f"\n  ✅ Summary   → {summary_json_path}")
     print(f"  ✅ Markdown  → {summary_md_path}")
@@ -119,7 +123,9 @@ def run_patient(
     print(f"\n  Flags raised : {len(summary.clinician_flags)}")
     print(f"  Conflicts    : {len(summary.conflicts_detected)}")
     print(f"  Pending labs : {len(summary.pending_results)}")
-    print(f"  Fab scan     : {'PASSED' if summary.fabrication_scan_passed else '⚠️  ISSUES'}")
+    print(
+        f"  Fab scan     : {'PASSED' if summary.fabrication_scan_passed else '⚠️  ISSUES'}"
+    )
 
     return {
         "patient_id": patient_id,
@@ -142,20 +148,28 @@ def main():
 
     patient_dirs = args.patient
     if not patient_dirs:
-        # Default to all subdirectories under 'data' directory
+        # Default to data directory, fallback to discharge_agent/data
         data_dir = Path("data")
+        if not data_dir.exists():
+            data_dir = Path("discharge_agent/data")
         if data_dir.exists() and data_dir.is_dir():
-            patient_dirs = [str(p) for p in data_dir.iterdir() if p.is_dir() and p.name != "outputs"]
-        
+            patient_dirs = [
+                str(p) for p in data_dir.iterdir() if p.is_dir() and p.name != "outputs"
+            ]
+
         if not patient_dirs:
-            print("[ERROR] No patient directories specified via --patient, and default 'data/' directory is empty or does not exist.")
+            print(
+                "[ERROR] No patient directories specified via --patient, and default 'data/' or 'discharge_agent/data/' directory is empty or does not exist."
+            )
             sys.exit(1)
 
     llm_client = None
     if not args.no_llm:
         model_name = args.model or SETTINGS.model
         if model_name.startswith("gemini-"):
-            api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get("GEMINI_API_KEY", "")
+            api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get(
+                "GEMINI_API_KEY", ""
+            )
             if not api_key:
                 print(
                     "[WARNING] GOOGLE_API_KEY or GEMINI_API_KEY not set. "
@@ -170,9 +184,10 @@ def main():
                     "Running in keyword-only mode (no LLM extraction).\n"
                     "Set the key or use --no-llm to suppress this warning."
                 )
-        
+
         if api_key:
             from utils.llm_client import LLMClient
+
             llm_client = LLMClient(
                 api_key=api_key,
                 model=model_name,
@@ -189,9 +204,9 @@ def main():
         )
         results.append(result)
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"  RUN COMPLETE — {len(results)} patient(s) processed")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     for r in results:
         status_icon = "✅" if r["status"] == "success" else "❌"
         print(

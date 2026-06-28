@@ -3,6 +3,7 @@ utils/token_counter.py
 Rough token budget tracker (no tiktoken needed).
 Uses character-based approximation: ~4 chars per token for English text.
 """
+
 from __future__ import annotations
 
 CHARS_PER_TOKEN = 4

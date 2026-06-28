@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 if hasattr(sys.stderr, "reconfigure"):
@@ -26,12 +27,16 @@ from config.settings import SETTINGS
 
 import importlib.util
 
+
 def _load_root_tool(name: str):
     root = Path(__file__).parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
@@ -39,6 +44,7 @@ get_logger = logger_mod.get_logger
 load_dotenv()
 
 logger = get_logger("app")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -68,6 +74,7 @@ def parse_args():
     )
     return parser.parse_args()
 
+
 def main():
     args = parse_args()
 
@@ -77,17 +84,23 @@ def main():
         if not data_dir.exists():
             data_dir = Path("data")
         if data_dir.exists() and data_dir.is_dir():
-            patient_dirs = [str(p) for p in data_dir.iterdir() if p.is_dir() and p.name != "outputs"]
-        
+            patient_dirs = [
+                str(p) for p in data_dir.iterdir() if p.is_dir() and p.name != "outputs"
+            ]
+
         if not patient_dirs:
-            logger.error("No patient directories specified via --patient, and default 'data/' directory is empty or does not exist.")
+            logger.error(
+                "No patient directories specified via --patient, and default 'data/' directory is empty or does not exist."
+            )
             sys.exit(1)
 
     llm_client = None
     if not args.no_llm:
         model_name = args.model or SETTINGS.model
         if model_name.startswith("gemini-"):
-            api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get("GEMINI_API_KEY", "")
+            api_key = os.environ.get("GOOGLE_API_KEY", "") or os.environ.get(
+                "GEMINI_API_KEY", ""
+            )
             if not api_key:
                 logger.warning(
                     "GOOGLE_API_KEY or GEMINI_API_KEY not set. Running in keyword-only mode (no LLM extraction)."
@@ -98,7 +111,7 @@ def main():
                 logger.warning(
                     "ANTHROPIC_API_KEY not set. Running in keyword-only mode (no LLM extraction)."
                 )
-        
+
         if api_key:
             llm_client = LLMClient(api_key=api_key, model=model_name)
             logger.info(f"Using LLM model: {llm_client.model}")
@@ -156,16 +169,41 @@ def main():
                 with open(summary_json_path, "w", encoding="utf-8") as f:
                     json.dump(summary_dict, f, indent=2, default=str)
 
-                logger.info(f"Successfully generated summary for {patient_id} -> {summary_json_path}")
-                results.append({"patient_id": patient_id, "status": "success", "output": str(summary_json_path)})
+                logger.info(
+                    f"Successfully generated summary for {patient_id} -> {summary_json_path}"
+                )
+
+                # Save to MongoDB if configured
+                try:
+                    from discharge_agent.utils.db import (
+                        save_patient_summary,
+                        save_patient_state,
+                    )
+
+                    save_patient_summary(patient_id, summary_dict)
+                    save_patient_state(patient_id, final_state)
+                except Exception as db_exc:
+                    logger.warning(f"Could not save patient data to MongoDB: {db_exc}")
+
+                results.append(
+                    {
+                        "patient_id": patient_id,
+                        "status": "success",
+                        "output": str(summary_json_path),
+                    }
+                )
             else:
-                logger.error(f"Workflow finished but no draft summary was assembled for {patient_id}")
+                logger.error(
+                    f"Workflow finished but no draft summary was assembled for {patient_id}"
+                )
                 results.append({"patient_id": patient_id, "status": "assembly_failed"})
 
         except Exception as exc:
             logger.error(f"Fatal error processing patient {patient_id}: {exc}")
             traceback.print_exc()
-            results.append({"patient_id": patient_id, "status": "fatal_error", "error": str(exc)})
+            results.append(
+                {"patient_id": patient_id, "status": "fatal_error", "error": str(exc)}
+            )
 
     # Write run manifest
     manifest_path = out_root / "run_manifest.json"
@@ -173,6 +211,7 @@ def main():
         json.dump(results, f, indent=2, default=str)
 
     logger.info(f"All processing complete. Manifest saved to {manifest_path}")
+
 
 if __name__ == "__main__":
     main()

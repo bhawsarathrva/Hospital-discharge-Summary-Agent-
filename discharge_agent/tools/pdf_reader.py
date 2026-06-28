@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -41,9 +40,9 @@ class PDFReaderTool(BaseTool):
         target = Path(path)
 
         if target.is_dir():
-            pdf_files = sorted(target.glob("discharge_agent/data/Patient Data.pdf"))
+            pdf_files = sorted(target.glob("discharge_agent/data/Medical bills.pdf"))
             if not pdf_files:
-                pdf_files = sorted(target.glob("**/Patient Data.pdf"))
+                pdf_files = sorted(target.glob("**/Medical bills.pdf"))
             if not pdf_files:
                 return ToolResult(
                     status=ToolStatus.NOT_FOUND,
@@ -117,7 +116,7 @@ class PDFReaderTool(BaseTool):
                 patient_doc = PatientDocument(
                     file_path=pdf_path,
                     page_number=page_num + 1,
-                    note_type="unknown",          # Classified later by DocumentParserTool
+                    note_type="unknown",  # Classified later by DocumentParserTool
                     raw_text=text.strip(),
                     extraction_confidence=confidence,
                     read_error=None if text.strip() else "Empty page or unreadable",
@@ -158,12 +157,14 @@ class PDFReaderTool(BaseTool):
             },
         }
 
+
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser(description="Test PDF extraction.")
     parser.add_argument("pdf_path", help="Path to PDF file or directory of PDFs")
     args = parser.parse_args()
-    
+
     tool = PDFReaderTool()
     result = tool.run(path=args.pdf_path)
     if result.ok:

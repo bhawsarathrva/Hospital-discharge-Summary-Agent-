@@ -5,6 +5,7 @@ In production this would call RxNorm / DrugBank / OpenFDA APIs.
 The mock always returns a deterministic result based on known interaction pairs,
 so the agent can test its escalation logic end-to-end.
 """
+
 from __future__ import annotations
 
 from typing import Dict, List, Optional, Tuple

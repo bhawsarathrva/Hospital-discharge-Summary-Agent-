@@ -1,10 +1,3 @@
-"""
-agent/planner.py
-Plans what the agent should do next given the current state.
-Generates an ordered list of tool calls to satisfy all required sections.
-Re-plans when tool calls fail or new information changes priorities.
-"""
-
 from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
@@ -13,8 +6,6 @@ from config.settings import SETTINGS
 from agent.state import AgentState
 
 
-# Fixed plan steps — the agent always follows this sequence
-# but can skip steps if data is already available or docs are missing
 PLAN_TEMPLATE: List[Dict[str, Any]] = [
     {
         "step_id": 1,

@@ -3,6 +3,7 @@ tools/document_parser.py
 Classifies each PatientDocument into a note type and runs LLM-based
 structured extraction of clinical entities.
 """
+
 from __future__ import annotations
 
 import json
@@ -46,8 +47,10 @@ class DocumentParserTool(BaseTool):
             except Exception as exc:
                 failed.append(f"{doc.file_path}:p{doc.page_number}: {exc}")
 
-        status = ToolStatus.SUCCESS if not failed else (
-            ToolStatus.PARTIAL if classified else ToolStatus.FAILED
+        status = (
+            ToolStatus.SUCCESS
+            if not failed
+            else (ToolStatus.PARTIAL if classified else ToolStatus.FAILED)
         )
         return ToolResult(
             status=status,

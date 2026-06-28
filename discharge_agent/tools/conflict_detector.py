@@ -3,12 +3,12 @@ tools/conflict_detector.py
 Detects conflicts between multiple source notes on key clinical fields.
 If two notes disagree, the conflict is surfaced — never silently resolved.
 """
+
 from __future__ import annotations
 
 import re
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
-from config.settings import SETTINGS
 from models.patient import Conflict
 from tools.base import BaseTool, ToolResult, ToolStatus
 
@@ -59,19 +59,21 @@ class ConflictDetectorTool(BaseTool):
             # Diagnoses
             for diag in entities.get("diagnoses", []):
                 if isinstance(diag, str) and diag.strip():
-                    field_values.setdefault("diagnoses", []).append((source, diag.strip()))
+                    field_values.setdefault("diagnoses", []).append(
+                        (source, diag.strip())
+                    )
 
             # Other key fields
             for field_name in ["allergies", "admission_date", "discharge_date"]:
                 val = entities.get(field_name)
                 if val and isinstance(val, str) and val.strip():
-                    field_values.setdefault(field_name, []).append((source, val.strip()))
+                    field_values.setdefault(field_name, []).append(
+                        (source, val.strip())
+                    )
 
         # Now detect conflicts
         for field_name, source_values in field_values.items():
-            conflicts.extend(
-                _detect_field_conflicts(field_name, source_values)
-            )
+            conflicts.extend(_detect_field_conflicts(field_name, source_values))
 
         return ToolResult(
             status=ToolStatus.SUCCESS,

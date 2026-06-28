@@ -1,13 +1,13 @@
-=== AGENT TRACE: patient_1 ===
-Duration: 19.89s | Steps: 2 | Tokens: 0 | Flags: 0
+=== AGENT TRACE: patient_2 ===
+Duration: 13.44s | Steps: 2 | Tokens: 0 | Flags: 0
 Terminated: assembly_failed
 
 ── Step 1 ──────────────────────────────
   REASON : Step 1: Ingest all PDFs from patient directory — proceeding....
   ACTION : pdf_reader({"step_id": 1})
-  STATUS : failed | retries=0 | 4.09s
-  RESULT : {'status': 'not_found', 'data': None, 'error': 'No PDF files found in directory: discharge_agent\\data\\patient_1', 'metadata': {}, 'duration_s': 0.002}
-  NEXT   : Step failed (No PDF files found in directory: discharge_agent\data\patient_1) — marking required fields MISSING
+  STATUS : failed | retries=0 | 3.01s
+  RESULT : {'status': 'not_found', 'data': None, 'error': 'No PDF files found in directory: discharge_agent\\data\\patient_2', 'metadata': {}, 'duration_s': 0.002}
+  NEXT   : Step failed (No PDF files found in directory: discharge_agent\data\patient_2) — marking required fields MISSING
 
 ── Step 2 ──────────────────────────────
   REASON : Step 6: Check discharge medications for drug interactions — proceeding....

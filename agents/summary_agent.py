@@ -3,39 +3,49 @@ agents/summary_agent.py
 SummaryAgent synthesizes the clinical narrative, assembles the structured
 discharge summary, and runs the final fabrication guard.
 """
+
 from __future__ import annotations
 
-import os
-import json
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 from pathlib import Path
 
 import importlib.util
-from pathlib import Path
+
 
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
 
 logger = get_logger("summary_agent")
 from config.settings import SETTINGS
-from discharge_agent.models.patient import Conflict, LabResult, Medication, Procedure, VitalSigns
+from discharge_agent.models.patient import (
+    Conflict,
+    LabResult,
+    Medication,
+    MedicationStatus,
+    Procedure,
+)
 from discharge_agent.models.summary import DischargeSummary, MedicationChange
 from prompts.extraction_prompt import HOSPITAL_COURSE_PROMPT_TEMPLATE
 
 logger = get_logger("summary_agent")
+
 
 class SummaryAgent:
     """
     SummaryAgent coordinates the synthesis and formatting of the final discharge summary draft.
     It builds the DischargeSummary structure, populates the sections, and runs fabrication guard validation.
     """
+
     def __init__(self, llm_client: Optional[Any] = None):
         self.llm = llm_client
 
@@ -79,8 +89,11 @@ class SummaryAgent:
 
         # Gather relevant notes
         note_priority = [
-            "admission_note", "progress_note", "nursing_documentation",
-            "icu_chart", "discharge_summary",
+            "admission_note",
+            "progress_note",
+            "nursing_documentation",
+            "icu_chart",
+            "discharge_summary",
         ]
         relevant_texts = []
         for priority_type in note_priority:
@@ -90,7 +103,7 @@ class SummaryAgent:
                     if text.strip():
                         relevant_texts.append(
                             f"[{priority_type.upper()} | "
-                            f"{doc.get('file_path','?')}:p{doc.get('page_number','?')}]\n{text}"
+                            f"{doc.get('file_path', '?')}:p{doc.get('page_number', '?')}]\n{text}"
                         )
 
         if not relevant_texts:
@@ -107,9 +120,8 @@ class SummaryAgent:
                 logger.error(f"LLM course synthesis failed: {exc}")
                 return f"[Hospital course synthesis failed: {exc}]"
         else:
-            return (
-                "Synthesised from source notes (LLM unavailable):\n"
-                + "\n".join(t[:300] for t in relevant_texts[:3])
+            return "Synthesised from source notes (LLM unavailable):\n" + "\n".join(
+                t[:300] for t in relevant_texts[:3]
             )
 
     def _assemble_summary(self, state: Any, hospital_course: str) -> DischargeSummary:
@@ -181,12 +193,21 @@ class SummaryAgent:
             all_diag = state.get("diagnoses", []) + state.get("discharge_diagnoses", [])
             principal = all_diag[0] if all_diag else M
             secondary = all_diag[1:] if len(all_diag) > 1 else []
-            
+
             # Convert raw lists/dicts back to objects
-            procedures = [Procedure(**p) if isinstance(p, dict) else p for p in state.get("procedures", [])]
-            admission_meds = [Medication(**m) if isinstance(m, dict) else m for m in state.get("admission_medications", [])]
-            discharge_meds = [Medication(**m) if isinstance(m, dict) else m for m in state.get("discharge_medications", [])]
-            
+            procedures = [
+                Procedure(**p) if isinstance(p, dict) else p
+                for p in state.get("procedures", [])
+            ]
+            admission_meds = [
+                Medication(**m) if isinstance(m, dict) else m
+                for m in state.get("admission_medications", [])
+            ]
+            discharge_meds = [
+                Medication(**m) if isinstance(m, dict) else m
+                for m in state.get("discharge_medications", [])
+            ]
+
             med_changes = []
             for mc in state.get("medication_changes", []):
                 if isinstance(mc, dict):
@@ -210,10 +231,16 @@ class SummaryAgent:
             drug_interaction_flags = state.get("drug_interaction_flags", [])
             follow_up = state.get("follow_up") or M
             pending_results = state.get("pending_results", [])
-            lab_results = [LabResult(**lr) if isinstance(lr, dict) else lr for lr in state.get("lab_results", [])]
+            lab_results = [
+                LabResult(**lr) if isinstance(lr, dict) else lr
+                for lr in state.get("lab_results", [])
+            ]
             discharge_condition = state.get("discharge_condition") or M
-            
-            conflicts = [Conflict(**c) if isinstance(c, dict) else c for c in state.get("conflicts", [])]
+
+            conflicts = [
+                Conflict(**c) if isinstance(c, dict) else c
+                for c in state.get("conflicts", [])
+            ]
             clinician_flags = state.get("clinician_flags", [])
             parsed_docs = state.get("parsed_documents", [])
             unreadable_files = state.get("unreadable_files", [])
@@ -248,7 +275,7 @@ class SummaryAgent:
             conflicts_detected=conflicts,
             clinician_flags=clinician_flags,
             source_documents=[
-                f"{d.get('file_path','?')}:p{d.get('page_number','?')}"
+                f"{d.get('file_path', '?')}:p{d.get('page_number', '?')}"
                 for d in parsed_docs
             ],
             unreadable_documents=unreadable_files,
@@ -256,7 +283,9 @@ class SummaryAgent:
         )
         return summary
 
-    def _run_fabrication_guard(self, summary: DischargeSummary, state: Any) -> DischargeSummary:
+    def _run_fabrication_guard(
+        self, summary: DischargeSummary, state: Any
+    ) -> DischargeSummary:
         issues = []
 
         # Check required fields are populated

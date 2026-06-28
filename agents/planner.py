@@ -3,18 +3,23 @@ agents/planner.py
 Planner coordinates and executes the multi-agent pipeline:
 ExtractorAgent -> ConflictAgent -> MedicationAgent -> SafetyAgent -> SummaryAgent
 """
+
 from __future__ import annotations
 from typing import Any, Optional
 
 import importlib.util
 from pathlib import Path
 
+
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
@@ -26,12 +31,14 @@ from agents.medication_agent import MedicationAgent
 from agents.safety_agent import SafetyAgent
 from agents.summary_agent import SummaryAgent
 
+
 class Planner:
     """
     Planner orchestrates the multi-agent workflow.
     It sequentially runs the clinical extraction, conflict audit, medication reconciliation,
     clinical safety validation, and summary assembly steps.
     """
+
     def __init__(self, llm_client: Optional[Any] = None):
         self.llm = llm_client
         self.extractor = ExtractorAgent(llm_client)

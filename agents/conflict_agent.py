@@ -14,6 +14,7 @@ if workspace_root not in sys.path:
 
 from discharge_agent.models.patient import Conflict
 
+
 class ConflictAgent:
     def __init__(self, llm_client: Optional[Any] = None):
         self.llm = llm_client
@@ -50,9 +51,20 @@ class ConflictAgent:
         }
 
         for c in llm_conflicts:
-            sig = (c.field, c.note_a_value.lower().strip(), c.note_b_value.lower().strip())
-            reverse_sig = (c.field, c.note_b_value.lower().strip(), c.note_a_value.lower().strip())
-            if sig not in existing_signatures and reverse_sig not in existing_signatures:
+            sig = (
+                c.field,
+                c.note_a_value.lower().strip(),
+                c.note_b_value.lower().strip(),
+            )
+            reverse_sig = (
+                c.field,
+                c.note_b_value.lower().strip(),
+                c.note_a_value.lower().strip(),
+            )
+            if (
+                sig not in existing_signatures
+                and reverse_sig not in existing_signatures
+            ):
                 all_conflicts.append(c)
                 existing_signatures.add(sig)
 
@@ -77,9 +89,11 @@ class ConflictAgent:
 
         return state
 
-    def _detect_rule_conflicts(self, parsed_docs: List[Dict[str, Any]]) -> List[Conflict]:
+    def _detect_rule_conflicts(
+        self, parsed_docs: List[Dict[str, Any]]
+    ) -> List[Conflict]:
         conflicts: List[Conflict] = []
-        
+
         # Build field -> [(source, value)] map
         field_values: Dict[str, List[tuple[str, str]]] = {}
 
@@ -90,13 +104,22 @@ class ConflictAgent:
             # Diagnoses
             for diag in entities.get("diagnoses", []):
                 if isinstance(diag, str) and diag.strip():
-                    field_values.setdefault("diagnoses", []).append((source, diag.strip()))
+                    field_values.setdefault("diagnoses", []).append(
+                        (source, diag.strip())
+                    )
 
             # Other key fields
-            for field_name in ["allergies", "admission_date", "discharge_date", "discharge_condition"]:
+            for field_name in [
+                "allergies",
+                "admission_date",
+                "discharge_date",
+                "discharge_condition",
+            ]:
                 val = entities.get(field_name)
                 if val and isinstance(val, str) and val.strip():
-                    field_values.setdefault(field_name, []).append((source, val.strip()))
+                    field_values.setdefault(field_name, []).append(
+                        (source, val.strip())
+                    )
 
         # Detect conflicts per field
         for field_name, source_vals in field_values.items():
@@ -108,7 +131,7 @@ class ConflictAgent:
                 norm = self._normalise_value(raw_value)
                 if norm in seen:
                     continue  # Same value — no conflict
-                
+
                 for prev_norm, prev_source in seen.items():
                     if not self._values_compatible(norm, prev_norm):
                         # Find original prev_value
@@ -117,7 +140,7 @@ class ConflictAgent:
                             if s == prev_source:
                                 prev_raw = v
                                 break
-                        
+
                         conflicts.append(
                             Conflict(
                                 field=field_name,
@@ -142,23 +165,25 @@ class ConflictAgent:
         """True if both values are essentially the same or one contains the other."""
         return a == b or a in b or b in a
 
-    def _detect_llm_conflicts(self, parsed_docs: List[Dict[str, Any]]) -> List[Conflict]:
+    def _detect_llm_conflicts(
+        self, parsed_docs: List[Dict[str, Any]]
+    ) -> List[Conflict]:
         conflicts: List[Conflict] = []
-        
+
         # Prepare a text summary of documents for the LLM to inspect
         doc_summaries = []
         for i, doc in enumerate(parsed_docs):
             source = f"{doc.get('file_path', 'unknown')}:p{doc.get('page_number', '?')}"
             entities = doc.get("entities", {})
             doc_summaries.append(
-                f"Document {i+1} [Source: {source}]:\n"
+                f"Document {i + 1} [Source: {source}]:\n"
                 f"- Diagnoses: {', '.join(entities.get('diagnoses', []))}\n"
                 f"- Allergies: {entities.get('allergies', 'Not documented')}\n"
                 f"- Admission Date: {entities.get('admission_date', 'Not documented')}\n"
                 f"- Discharge Date: {entities.get('discharge_date', 'Not documented')}\n"
                 f"- Discharge Condition: {entities.get('discharge_condition', 'Not documented')}\n"
             )
-        
+
         summaries_text = "\n\n".join(doc_summaries)
         separator = "=" * 60
         prompt = f"""
@@ -190,20 +215,23 @@ If there are no conflicts, return an empty list `[]`.
 
 Response MUST be a valid JSON array and nothing else. Do not add markdown backticks.
 """
-        response_text = self.llm.complete(prompt, max_tokens=1000, temperature=0.0).strip()
-        
+        response_text = self.llm.complete(
+            prompt, max_tokens=1000, temperature=0.0
+        ).strip()
+
         # Clean JSON markdown fences if present
         if response_text.startswith("```json"):
             response_text = response_text[7:]
         if response_text.endswith("```"):
             response_text = response_text[:-3]
         response_text = response_text.strip()
-        
+
         if not response_text:
             return conflicts
 
         try:
             import json
+
             data = json.loads(response_text)
             if isinstance(data, list):
                 for item in data:

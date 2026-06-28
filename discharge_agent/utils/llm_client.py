@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import time
 from typing import List, Optional
 
 from tenacity import (
@@ -23,9 +22,19 @@ class LLMClient:
     ):
         self.model = model or SETTINGS.model
         if self.model.startswith("gemini-"):
-            self.api_key = api_key or os.environ.get("GOOGLE_API_KEY", "") or os.environ.get("GEMINI_API_KEY", "") or os.environ.get("ANTHROPIC_API_KEY", "")
+            self.api_key = (
+                api_key
+                or os.environ.get("GOOGLE_API_KEY", "")
+                or os.environ.get("GEMINI_API_KEY", "")
+                or os.environ.get("ANTHROPIC_API_KEY", "")
+            )
         else:
-            self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "") or os.environ.get("GOOGLE_API_KEY", "") or os.environ.get("GEMINI_API_KEY", "")
+            self.api_key = (
+                api_key
+                or os.environ.get("ANTHROPIC_API_KEY", "")
+                or os.environ.get("GOOGLE_API_KEY", "")
+                or os.environ.get("GEMINI_API_KEY", "")
+            )
         self._client = None
         self.total_input_tokens = 0
         self.total_output_tokens = 0
@@ -35,6 +44,7 @@ class LLMClient:
             if self.model.startswith("gemini-1.5-flash"):
                 try:
                     import google.generativeai as genai
+
                     genai.configure(api_key=self.api_key)
                     self._client = genai
                 except ImportError:
@@ -44,6 +54,7 @@ class LLMClient:
             else:
                 try:
                     import anthropic
+
                     self._client = anthropic.Anthropic(api_key=self.api_key)
                 except ImportError:
                     raise RuntimeError(
@@ -54,9 +65,7 @@ class LLMClient:
     @retry(
         retry=retry_if_exception_type(Exception),
         stop=stop_after_attempt(SETTINGS.max_retries_per_tool),
-        wait=wait_exponential(
-            multiplier=SETTINGS.retry_base_delay_s, min=1, max=10
-        ),
+        wait=wait_exponential(multiplier=SETTINGS.retry_base_delay_s, min=1, max=10),
         reraise=False,
     )
     def complete(
@@ -79,8 +88,14 @@ class LLMClient:
             safety_settings = [
                 {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
                 {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE",
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE",
+                },
             ]
             model = client.GenerativeModel(
                 model_name=self.model,
@@ -131,8 +146,14 @@ class LLMClient:
             safety_settings = [
                 {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
                 {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+                {
+                    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    "threshold": "BLOCK_NONE",
+                },
+                {
+                    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    "threshold": "BLOCK_NONE",
+                },
             ]
             model = client.GenerativeModel(
                 model_name=self.model,
@@ -150,7 +171,9 @@ class LLMClient:
             response = model.generate_content(gemini_messages)
             try:
                 text = response.text
-                self.total_input_tokens += sum(len(m["content"].split()) for m in messages)
+                self.total_input_tokens += sum(
+                    len(m["content"].split()) for m in messages
+                )
                 self.total_output_tokens += len(text.split())
             except Exception:
                 text = ""

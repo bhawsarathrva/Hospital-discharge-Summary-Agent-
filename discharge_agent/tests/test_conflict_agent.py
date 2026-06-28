@@ -2,9 +2,9 @@
 tests/test_conflict_agent.py
 Tests for the root level ConflictAgent class.
 """
-import pytest
+
 from agents.conflict_agent import ConflictAgent
-from discharge_agent.models.patient import Conflict
+
 
 class DummyLLM:
     def __init__(self, response_text):
@@ -32,10 +32,10 @@ def test_conflict_agent_rule_based_diagnoses():
             },
         ]
     }
-    
+
     updated_state = agent.run(state)
     conflicts = updated_state["conflicts"]
-    
+
     assert len(conflicts) > 0
     assert any(c["field"] == "diagnoses" for c in conflicts)
     assert any("admission.pdf" in c["note_a_source"] for c in conflicts)
@@ -58,10 +58,10 @@ def test_conflict_agent_rule_based_no_conflict():
             },
         ]
     }
-    
+
     updated_state = agent.run(state)
     conflicts = updated_state["conflicts"]
-    
+
     # "Diabetes" and "Diabetes Mellitus" are compatible (one contains substring of another)
     assert len(conflicts) == 0
 
@@ -79,7 +79,7 @@ def test_conflict_agent_llm_based_semantic_conflict():
     ]"""
     llm = DummyLLM(mock_llm_response)
     agent = ConflictAgent(llm_client=llm)
-    
+
     state = {
         "parsed_documents": [
             {
@@ -94,10 +94,10 @@ def test_conflict_agent_llm_based_semantic_conflict():
             },
         ]
     }
-    
+
     updated_state = agent.run(state)
     conflicts = updated_state["conflicts"]
-    
+
     # Should detect 2 conflicts (rule-based conflict for diagnoses, and LLM-based for principal_diagnosis)
     assert len(conflicts) >= 1
     assert any(c["field"] == "principal_diagnosis" for c in conflicts)

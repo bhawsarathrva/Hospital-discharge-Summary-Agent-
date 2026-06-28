@@ -3,17 +3,23 @@ agents/safety_agent.py
 SafetyAgent checks medications for dangerous interactions
 and flags any unresolved conflicts or critical pending results.
 """
+
 from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+from typing import Any, Optional
+
 
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
@@ -26,12 +32,14 @@ format_clinician_flag = escalation_tool.format_clinician_flag
 
 logger = get_logger("safety_agent")
 
+
 class SafetyAgent:
     """
     SafetyAgent runs clinical safety checks.
     It runs medication-medication interaction analysis, flags high-severity interactions,
     and aggregates clinical safety warnings for the final summary draft.
     """
+
     def __init__(self, llm_client: Optional[Any] = None):
         self.llm = llm_client
 
@@ -74,14 +82,14 @@ class SafetyAgent:
             for item in interactions:
                 severity = item.get("severity", "LOW")
                 desc = item.get("description", "")
-                
+
                 # Format safety warning
                 formatted_flag = format_clinician_flag(
                     severity=severity,
                     field="medications",
                     message=desc,
                 )
-                
+
                 if severity == "HIGH":
                     clinician_flags.append(formatted_flag)
                 interaction_flags.append(formatted_flag)

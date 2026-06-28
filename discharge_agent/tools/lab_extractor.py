@@ -4,10 +4,11 @@ Extract laboratory results from parsed document text.
 Marks results as FINAL, PENDING, or UNKNOWN.
 Flags abnormal values.
 """
+
 from __future__ import annotations
 
 import re
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 from models.patient import LabResult, LabStatus
 from tools.base import BaseTool, ToolResult, ToolStatus
@@ -16,19 +17,37 @@ from tools.base import BaseTool, ToolResult, ToolStatus
 # Common lab test patterns — extend as needed
 LAB_PATTERNS = [
     # Haematology
-    ("haemoglobin", r"h(?:a?e)?moglobin\s*(?:\([^)]*\))?\s*[:\-]?\s*([\d.]+)\s*(g[m/]?d?[lL]?)?"),
+    (
+        "haemoglobin",
+        r"h(?:a?e)?moglobin\s*(?:\([^)]*\))?\s*[:\-]?\s*([\d.]+)\s*(g[m/]?d?[lL]?)?",
+    ),
     ("wbc", r"(?:wbc|total count|tlc)\s*[:\-]?\s*([\d,.]+)\s*(cells?/(?:cumm|mm3))?"),
     ("platelets", r"platelet\s+count\s*[:\-]?\s*([\d,.]+)\s*(lakhs?/cumm|×10\^9/L)?"),
     # Biochemistry
     ("serum_creatinine", r"(?:serum\s+)?creatinine\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?"),
-    ("sodium", r"(?:s\.?sodium|serum\s+sodium|s\.?na\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?"),
-    ("potassium", r"(?:s\.?potassium|serum\s+potassium|s\.?k\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?"),
-    ("blood_glucose_rbs", r"(?:rbs|random\s+blood\s+sugar|blood\s+glucose)\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?"),
+    (
+        "sodium",
+        r"(?:s\.?sodium|serum\s+sodium|s\.?na\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?",
+    ),
+    (
+        "potassium",
+        r"(?:s\.?potassium|serum\s+potassium|s\.?k\+?)\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL]|mEq/[lL])?",
+    ),
+    (
+        "blood_glucose_rbs",
+        r"(?:rbs|random\s+blood\s+sugar|blood\s+glucose)\s*[:\-]?\s*([\d.]+)\s*(mg/d[lL])?",
+    ),
     ("hba1c", r"hba?1c?\s*[:\-]?\s*([\d.]+)\s*%?"),
     ("crp", r"c-?reactive\s+protein\s*[:\-]?\s*([\d.]+)\s*(mg/[lL])?"),
     # Serology
-    ("widal_typhi_o", r"salmonella\s+typhi\s+.?o.?\s*[:\-]?\s*(positive|negative|[\d:]+)"),
-    ("widal_typhi_h", r"salmonella\s+typhi\s+.?h.?\s*[:\-]?\s*(positive|negative|[\d:]+)"),
+    (
+        "widal_typhi_o",
+        r"salmonella\s+typhi\s+.?o.?\s*[:\-]?\s*(positive|negative|[\d:]+)",
+    ),
+    (
+        "widal_typhi_h",
+        r"salmonella\s+typhi\s+.?h.?\s*[:\-]?\s*(positive|negative|[\d:]+)",
+    ),
     # ABG
     ("ph", r"\bph\s*[:\-]?\s*([\d.]+)"),
     ("hco3", r"hco?3\s*[:\-]?\s*([\d.]+)\s*(mmol/[lL])?"),
@@ -46,8 +65,13 @@ REFERENCE_RANGES = {
 }
 
 PENDING_INDICATORS = [
-    "pending", "awaited", "report awaited", "sent to lab",
-    "result due", "not received", "s/o pending",
+    "pending",
+    "awaited",
+    "report awaited",
+    "sent to lab",
+    "result due",
+    "not received",
+    "s/o pending",
 ]
 
 
@@ -61,7 +85,9 @@ class LabExtractorTool(BaseTool):
 
     def _run(
         self,
-        documents: List[Dict[str, Any]],  # Parsed document dicts from DocumentParserTool
+        documents: List[
+            Dict[str, Any]
+        ],  # Parsed document dicts from DocumentParserTool
     ) -> ToolResult:
         if not documents:
             return ToolResult(
@@ -148,7 +174,9 @@ def _regex_extract_labs(
             unit = match.group(2) if match.lastindex >= 2 else None
 
             # Try to get reference range
-            ref_min, ref_max, ref_unit = REFERENCE_RANGES.get(test_name, (None, None, None))
+            ref_min, ref_max, ref_unit = REFERENCE_RANGES.get(
+                test_name, (None, None, None)
+            )
             ref_range = f"{ref_min}–{ref_max} {ref_unit}".strip() if ref_min else None
 
             lab = LabResult(
@@ -191,9 +219,11 @@ def _extract_pending_test_name(text: str, indicator: str) -> Optional[str]:
     idx = text.lower().find(indicator)
     if idx == -1:
         return None
-    snippet = text[max(0, idx - 60):idx + 40]
+    snippet = text[max(0, idx - 60) : idx + 40]
     # Look for capitalised test names nearby
-    match = re.search(r"([A-Z][A-Za-z\s/]+(?:culture|sensitivity|test|report|result))", snippet)
+    match = re.search(
+        r"([A-Z][A-Za-z\s/]+(?:culture|sensitivity|test|report|result))", snippet
+    )
     if match:
         return f"{match.group(1).strip()} — {indicator}"
     return f"Unknown test — {indicator} (context: '{snippet.strip()[:60]}')"

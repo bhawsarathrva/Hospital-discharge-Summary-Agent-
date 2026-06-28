@@ -4,7 +4,22 @@ services:
     image: hospital-discharge-summary-agent:latest
     env_file:
       - .env
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=discharge_summary_agent
     volumes:
       - ./discharge_agent/data:/app/discharge_agent/data
       - ./outputs:/app/outputs
     command: python app.py
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

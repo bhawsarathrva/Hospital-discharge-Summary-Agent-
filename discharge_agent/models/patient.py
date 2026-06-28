@@ -2,11 +2,12 @@
 models/patient.py
 Core clinical data models — all fields Optional to represent missing data.
 """
+
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 
 
 class MedicationStatus(str, Enum):
@@ -35,8 +36,8 @@ class Medication:
     indication: Optional[str] = None
     # Reconciliation fields
     status: Optional[MedicationStatus] = None
-    change_reason: Optional[str] = None    # None if not documented
-    source_note: Optional[str] = None     # Which document this came from
+    change_reason: Optional[str] = None  # None if not documented
+    source_note: Optional[str] = None  # Which document this came from
 
     def to_dict(self) -> dict:
         return {
@@ -117,12 +118,13 @@ class VitalSigns:
 @dataclass
 class PatientDocument:
     """Represents one source PDF page / section after extraction."""
+
     file_path: str
     page_number: int
-    note_type: str                   # Classified type (see settings.NOTE_TYPE_KEYWORDS)
+    note_type: str  # Classified type (see settings.NOTE_TYPE_KEYWORDS)
     raw_text: str
-    extraction_confidence: float = 1.0   # 0–1; low for handwritten notes
-    read_error: Optional[str] = None     # If extraction failed
+    extraction_confidence: float = 1.0  # 0–1; low for handwritten notes
+    read_error: Optional[str] = None  # If extraction failed
 
     def to_dict(self) -> dict:
         return {
@@ -138,6 +140,7 @@ class PatientDocument:
 @dataclass
 class Conflict:
     """A detected conflict between two source notes."""
+
     field: str
     note_a_source: str
     note_a_value: str

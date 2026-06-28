@@ -4,11 +4,10 @@ Integration tests for the agent loop.
 Uses mock data — no API key required.
 Run: pytest tests/test_agent_loop.py -v
 """
+
 import os
 import tempfile
-from pathlib import Path
 
-import pytest
 
 from agent.loop import AgentLoop
 from agent.planner import Planner
@@ -18,6 +17,7 @@ from models.summary import DischargeSummary
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
+
 
 def make_temp_patient_dir(pdf_bytes: bytes = None) -> str:
     """Create a temp directory. If pdf_bytes given, write a dummy PDF."""
@@ -29,6 +29,7 @@ def make_temp_patient_dir(pdf_bytes: bytes = None) -> str:
 
 
 # ── Planner tests ─────────────────────────────────────────────────────────────
+
 
 class TestPlanner:
     def test_creates_full_plan(self):
@@ -77,6 +78,7 @@ class TestPlanner:
 
 # ── AgentState tests ──────────────────────────────────────────────────────────
 
+
 class TestAgentState:
     def test_add_flag_deduplicates(self):
         state = AgentState(patient_id="p1", patient_dir="/tmp")
@@ -95,6 +97,7 @@ class TestAgentState:
 
 # ── Agent loop with empty directory ──────────────────────────────────────────
 
+
 class TestAgentLoopNoLLM:
     def test_empty_dir_produces_missing_summary(self):
         """Agent should complete even with no PDFs — all fields MISSING."""
@@ -105,8 +108,10 @@ class TestAgentLoopNoLLM:
         assert isinstance(summary, DischargeSummary)
         assert summary.is_draft is True
         # All fields should be missing sentinel or empty
-        assert SETTINGS.missing_sentinel in summary.principal_diagnosis or \
-               summary.principal_diagnosis == SETTINGS.missing_sentinel
+        assert (
+            SETTINGS.missing_sentinel in summary.principal_diagnosis
+            or summary.principal_diagnosis == SETTINGS.missing_sentinel
+        )
         # Trace should have steps recorded
         assert len(trace.steps) > 0
 

@@ -26,3 +26,4 @@ google-search-results
 faiss-cpu
 sentence_transformers
 sarvamai
+pymongo>=4.0.0

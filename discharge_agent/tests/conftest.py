@@ -2,7 +2,7 @@
 tests/conftest.py
 Shared pytest fixtures.
 """
-import os
+
 import sys
 import tempfile
 from pathlib import Path
@@ -72,6 +72,7 @@ def sample_admission_doc():
 def sample_medication_list():
     """Sample medication objects."""
     from models.patient import Medication
+
     return [
         Medication(name="Metformin", dose="500mg", route="oral", frequency="1-0-1"),
         Medication(name="Glimepiride", dose="2mg", route="oral", frequency="1-0-0"),

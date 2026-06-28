@@ -6,9 +6,10 @@ Compares admission vs discharge medication lists and surfaces:
   - Dose/route/frequency changes
   - Changes with no documented reason (flagged)
 """
+
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import List
 
 from config.settings import SETTINGS
 from models.patient import Medication, MedicationStatus
@@ -56,7 +57,8 @@ class MedicationReconcilerTool(BaseTool):
                     flag_message=(
                         f"{SETTINGS.flag_prefix} '{adm.name}' was stopped "
                         f"with no documented reason — requires clinician review]"
-                        if not adm.change_reason else None
+                        if not adm.change_reason
+                        else None
                     ),
                 )
                 changes.append(mc)
@@ -72,7 +74,8 @@ class MedicationReconcilerTool(BaseTool):
                     flag_message=(
                         f"{SETTINGS.flag_prefix} '{dis.name}' was added "
                         f"with no documented indication — requires clinician review]"
-                        if not dis.change_reason else None
+                        if not dis.change_reason
+                        else None
                     ),
                 )
                 changes.append(mc)
@@ -90,12 +93,15 @@ class MedicationReconcilerTool(BaseTool):
                         flag_message=(
                             f"{SETTINGS.flag_prefix} '{dis.name}' changed ({detail}) "
                             f"with no documented reason — requires clinician review]"
-                            if not dis.change_reason else None
+                            if not dis.change_reason
+                            else None
                         ),
                     )
                     changes.append(mc)
                     if not dis.change_reason:
-                        flags.append(f"Medication CHANGED ({detail}) without reason: {dis.name}")
+                        flags.append(
+                            f"Medication CHANGED ({detail}) without reason: {dis.name}"
+                        )
                 else:
                     # Continued unchanged
                     mc = MedicationChange(
@@ -146,5 +152,8 @@ def _detect_change(adm: Medication, dis: Medication):
     if adm.route and dis.route and _norm(adm.route) != _norm(dis.route):
         return MedicationStatus.ROUTE_CHANGED, f"route: {adm.route} → {dis.route}"
     if adm.frequency and dis.frequency and _norm(adm.frequency) != _norm(dis.frequency):
-        return MedicationStatus.UNKNOWN_CHANGE, f"frequency: {adm.frequency} → {dis.frequency}"
+        return (
+            MedicationStatus.UNKNOWN_CHANGE,
+            f"frequency: {adm.frequency} → {dis.frequency}",
+        )
     return None, None

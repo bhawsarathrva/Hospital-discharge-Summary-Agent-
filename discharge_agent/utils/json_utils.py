@@ -2,11 +2,12 @@
 utils/json_utils.py
 Safe JSON parsing utilities for LLM outputs.
 """
+
 from __future__ import annotations
 
 import json
 import re
-from typing import Any, Optional
+from typing import Optional
 
 
 def safe_json_parse(text: str) -> Optional[dict]:

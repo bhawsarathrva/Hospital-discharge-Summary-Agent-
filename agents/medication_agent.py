@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 from config.settings import SETTINGS
 from discharge_agent.models.patient import Medication, MedicationStatus
 from discharge_agent.models.summary import MedicationChange
@@ -8,17 +8,22 @@ from discharge_agent.models.summary import MedicationChange
 import importlib.util
 from pathlib import Path
 
+
 def _load_root_tool(name: str):
     root = Path(__file__).parent.parent
-    spec = importlib.util.spec_from_file_location(f"root_tools_{name}", str(root / "tools" / f"{name}.py"))
+    spec = importlib.util.spec_from_file_location(
+        f"root_tools_{name}", str(root / "tools" / f"{name}.py")
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
 
 logger_mod = _load_root_tool("logger")
 get_logger = logger_mod.get_logger
 
 logger = get_logger("medication_agent")
+
 
 class MedicationAgent:
     def __init__(self, llm_client: Optional[Any] = None):
@@ -65,12 +70,15 @@ class MedicationAgent:
                     flag_message=(
                         f"{SETTINGS.flag_prefix} '{adm.name}' was stopped "
                         f"with no documented reason — requires clinician review]"
-                        if not adm.change_reason else None
+                        if not adm.change_reason
+                        else None
                     ),
                 )
                 changes.append(mc)
                 if not adm.change_reason:
-                    flags.append(f"Medication '{adm.name}' stopped with no documented reason.")
+                    flags.append(
+                        f"Medication '{adm.name}' stopped with no documented reason."
+                    )
 
             elif not adm and dis:
                 # Newly added at discharge
@@ -81,12 +89,15 @@ class MedicationAgent:
                     flag_message=(
                         f"{SETTINGS.flag_prefix} '{dis.name}' was added "
                         f"with no documented indication — requires clinician review]"
-                        if not dis.change_reason else None
+                        if not dis.change_reason
+                        else None
                     ),
                 )
                 changes.append(mc)
                 if not dis.change_reason:
-                    flags.append(f"Medication '{dis.name}' added with no documented reason/indication.")
+                    flags.append(
+                        f"Medication '{dis.name}' added with no documented reason/indication."
+                    )
 
             elif adm and dis:
                 # Check for changes
@@ -99,12 +110,15 @@ class MedicationAgent:
                         flag_message=(
                             f"{SETTINGS.flag_prefix} '{dis.name}' changed ({detail}) "
                             f"with no documented reason — requires clinician review]"
-                            if not dis.change_reason else None
+                            if not dis.change_reason
+                            else None
                         ),
                     )
                     changes.append(mc)
                     if not dis.change_reason:
-                        flags.append(f"Medication '{dis.name}' changed ({detail}) with no documented reason.")
+                        flags.append(
+                            f"Medication '{dis.name}' changed ({detail}) with no documented reason."
+                        )
                 else:
                     # Continued unchanged
                     mc = MedicationChange(
@@ -151,11 +165,20 @@ class MedicationAgent:
     def _norm(self, name: str) -> str:
         return name.lower().strip().replace(".", "").replace("-", " ")
 
-    def _detect_change(self, adm: Medication, dis: Medication) -> tuple[Optional[MedicationStatus], Optional[str]]:
+    def _detect_change(
+        self, adm: Medication, dis: Medication
+    ) -> tuple[Optional[MedicationStatus], Optional[str]]:
         if adm.dose and dis.dose and self._norm(adm.dose) != self._norm(dis.dose):
             return MedicationStatus.DOSE_CHANGED, f"dose: {adm.dose} → {dis.dose}"
         if adm.route and dis.route and self._norm(adm.route) != self._norm(dis.route):
             return MedicationStatus.ROUTE_CHANGED, f"route: {adm.route} → {dis.route}"
-        if adm.frequency and dis.frequency and self._norm(adm.frequency) != self._norm(dis.frequency):
-            return MedicationStatus.UNKNOWN_CHANGE, f"frequency: {adm.frequency} → {dis.frequency}"
+        if (
+            adm.frequency
+            and dis.frequency
+            and self._norm(adm.frequency) != self._norm(dis.frequency)
+        ):
+            return (
+                MedicationStatus.UNKNOWN_CHANGE,
+                f"frequency: {adm.frequency} → {dis.frequency}",
+            )
         return None, None

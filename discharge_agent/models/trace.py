@@ -3,6 +3,7 @@ models/trace.py
 Agent step tracing and observability.
 Every step is recorded: reasoning → tool → inputs → result → next decision.
 """
+
 from __future__ import annotations
 
 import json
@@ -26,14 +27,14 @@ class AgentStep:
     timestamp: float = field(default_factory=time.time)
 
     # ReAct components
-    reasoning: str = ""                  # LLM's thought before acting
-    tool_name: Optional[str] = None      # Tool selected
+    reasoning: str = ""  # LLM's thought before acting
+    tool_name: Optional[str] = None  # Tool selected
     tool_inputs: Dict[str, Any] = field(default_factory=dict)
     tool_result: Optional[Any] = None
     tool_status: StepStatus = StepStatus.SUCCESS
 
     # After observing result
-    next_decision: str = ""              # What the agent decided to do next
+    next_decision: str = ""  # What the agent decided to do next
     flags_raised: List[str] = field(default_factory=list)
 
     # Metadata
@@ -49,8 +50,8 @@ class AgentStep:
             "tool_name": self.tool_name,
             "tool_inputs": self.tool_inputs,
             "tool_result": self.tool_result
-                if not isinstance(self.tool_result, bytes)
-                else "<binary>",
+            if not isinstance(self.tool_result, bytes)
+            else "<binary>",
             "tool_status": self.tool_status.value,
             "next_decision": self.next_decision,
             "flags_raised": self.flags_raised,
@@ -66,7 +67,7 @@ class AgentTrace:
     start_time: float = field(default_factory=time.time)
     end_time: Optional[float] = None
     steps: List[AgentStep] = field(default_factory=list)
-    termination_reason: str = ""   # "plan_complete" | "step_cap_reached" | "error"
+    termination_reason: str = ""  # "plan_complete" | "step_cap_reached" | "error"
     total_tokens: int = 0
     total_flags: int = 0
 

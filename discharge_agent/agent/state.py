@@ -4,13 +4,14 @@ Agent working memory.
 Holds all extracted data as the agent progresses through its plan.
 Immutable after construction — mutations return new State objects.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 from models.patient import Conflict, LabResult, Medication, PatientDocument, Procedure
-from models.summary import DischargeSummary, MedicationChange
+from models.summary import MedicationChange
 from models.trace import AgentTrace
 
 
@@ -20,6 +21,7 @@ class AgentState:
     Mutable working memory for one patient's agent run.
     Each tool call updates this state.
     """
+
     patient_id: str
     patient_dir: str
 

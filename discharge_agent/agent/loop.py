@@ -12,10 +12,9 @@ Hard limits enforced:
   - MAX_STEPS from settings (iteration cap)
   - Per-tool retry handled in Executor
 """
+
 from __future__ import annotations
 
-import json
-import time
 from typing import Optional, Tuple
 
 from config.settings import SETTINGS
@@ -23,15 +22,13 @@ from agent.executor import Executor
 from agent.planner import Planner
 from agent.state import AgentState
 from models.summary import DischargeSummary
-from models.trace import AgentStep, AgentTrace, StepStatus
-from tools.base import ToolStatus
+from models.trace import AgentTrace, StepStatus
 from utils.llm_client import LLMClient
 
 # Rich console for live trace output (optional)
 try:
     from rich.console import Console
-    from rich.panel import Panel
-    from rich.text import Text
+
     _console = Console()
     _RICH = True
 except ImportError:
@@ -73,17 +70,15 @@ class AgentLoop:
         trace = AgentTrace(patient_id=patient_id)
         state.trace = trace
 
-        self._log(f"\n{'='*60}")
+        self._log(f"\n{'=' * 60}")
         self._log(f"  AGENT START: {patient_id}")
         self._log(f"  Source dir : {patient_dir}")
         self._log(f"  Max steps  : {SETTINGS.max_steps}")
-        self._log(f"{'='*60}\n")
+        self._log(f"{'=' * 60}\n")
 
         # ── 1. Create initial plan ──────────────────────────────────────────
         state.current_plan = self.planner.create_initial_plan(state)
-        self._log(
-            f"[PLAN] {len(state.current_plan)} steps created"
-        )
+        self._log(f"[PLAN] {len(state.current_plan)} steps created")
 
         # ── 2. Main loop ────────────────────────────────────────────────────
         while True:
@@ -141,7 +136,7 @@ class AgentLoop:
             # Log flags
             if agent_step.flags_raised:
                 self._log(f"  FLAGS   : {len(agent_step.flags_raised)} raised")
-                for flag in agent_step.flags_raised[-3:]:   # show last 3
+                for flag in agent_step.flags_raised[-3:]:  # show last 3
                     self._log(f"    🚩 {flag[:100]}")
 
             self._log(f"  NEXT    : {agent_step.next_decision[:100]}")
@@ -158,13 +153,13 @@ class AgentLoop:
             trace.finish("assembly_failed")
 
         self._log(
-            f"\n{'='*60}\n"
+            f"\n{'=' * 60}\n"
             f"  COMPLETE: {patient_id}\n"
             f"  Steps   : {state.step_count}\n"
             f"  Flags   : {len(summary.clinician_flags)}\n"
             f"  Conflicts: {len(summary.conflicts_detected)}\n"
             f"  Fab scan: {'PASSED' if summary.fabrication_scan_passed else 'ISSUES FOUND'}\n"
-            f"{'='*60}\n"
+            f"{'=' * 60}\n"
         )
 
         return summary, trace
@@ -177,7 +172,7 @@ class AgentLoop:
         if not self.llm:
             return (
                 f"Plan step {next_step['step_id']}: '{next_step['goal']}'. "
-                f"Completed steps: {[s['step_id'] for s in state.current_plan if s.get('status')=='completed']}. "
+                f"Completed steps: {[s['step_id'] for s in state.current_plan if s.get('status') == 'completed']}. "
                 f"Proceeding with tool '{next_step['tool']}'."
             )
 
@@ -194,8 +189,8 @@ You are running step {state.step_count} of a discharge summary agent.
 - Flags raised: {len(state.clinician_flags)}
 
 ## Next Step
-Goal: {next_step['goal']}
-Tool: {next_step['tool']}
+Goal: {next_step["goal"]}
+Tool: {next_step["tool"]}
 
 ## Reasoning
 In 1-2 sentences, explain WHY this step is needed now and what you expect to find.
@@ -209,6 +204,7 @@ Do NOT invent clinical facts. Do NOT skip this step without a good reason.
     def _minimal_summary(self, state: AgentState) -> DischargeSummary:
         """Emergency fallback summary when assembly step failed."""
         from models.summary import DischargeSummary
+
         M = SETTINGS.missing_sentinel
         return DischargeSummary(
             patient_id=state.patient_id,
